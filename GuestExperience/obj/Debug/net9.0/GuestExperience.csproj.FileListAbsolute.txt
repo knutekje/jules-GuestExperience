@@ -70,3 +70,4 @@
 /home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/obj/Debug/net9.0/GuestExperience.pdb
 /home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/obj/Debug/net9.0/GuestExperience.genruntimeconfig.cache
 /home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/obj/Debug/net9.0/ref/GuestExperience.dll
+/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/obj/Debug/net9.0/GuestExperience.sourcelink.json

@@ -95,7 +95,7 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 
     if (env.IsDevelopment())
     {
-        options.ListenAnyIP(5000); // HTTP
+        options.ListenAnyIP(5000); 
         options.ListenAnyIP(5001, listenOptions =>
         {
             listenOptions.UseHttps();
