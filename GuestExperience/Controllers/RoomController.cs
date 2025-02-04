@@ -21,5 +21,11 @@ public class RoomController
     {
         return await _roomService.GetRooms();
     }
+
+    [HttpPost]
+    public async Task<Room> CreateRoom(Room room)
+    {
+        return await _roomService.CreateRoomAsync(room) ?? throw new InvalidOperationException();
+    }
     
 }
