@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/GuestExperience.csproj": {}
+    "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj": {}
   },
   "projects": {
-    "/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/GuestExperience.csproj": {
+    "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/GuestExperience.csproj",
+        "projectUniqueName": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj",
         "projectName": "GuestExperience",
-        "projectPath": "/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/GuestExperience.csproj",
+        "projectPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj",
         "packagesPath": "/home/knutekje/.nuget/packages/",
-        "outputPath": "/home/knutekje/NewJulianPMS/GuestExperience/GuestExperience/obj/",
+        "outputPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/knutekje/.nuget/NuGet/NuGet.Config"
@@ -64,9 +64,21 @@
               "target": "Package",
               "version": "[9.0.1, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.3.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

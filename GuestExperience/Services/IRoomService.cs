@@ -1,15 +1,16 @@
-﻿using GuestExperience.Models;
+using GuestExperience.Models;
 
 namespace GuestExperience.Services;
 
 public interface IRoomService
 {
-    Task<IEnumerable<Room>> GetAllRoomsAsync();
-    Task<Room?> GetRoomByIdAsync(int id);
-    Task<Room> AddRoomAsync(Room room);
-    Task<Room?> UpdateRoomAsync(int id, Room updatedRoom);
-    Task<bool> DeleteRoomAsync(int id);
-    Task<Room> GetRoomByRoomNumberAsync(string roomNumber);
-
-    Task<IEnumerable<Room>> GetDirtyRoomsAsync();
+    public Task<Room?> CreateRoomAsync(Room room);
+    public Task<Room> UpdateRoomAsync(Room room);
+    public Task<Room?> DeleteRoom(Room room);
+    public Task<List<Room?>> GetRooms();
+    public Task<Room?> GetRoomById(int id);
+    public Task<List<Room?>> GetRoomsByFloor(int floor);
+    public Task<List<Room?>> GetRoomsByRoomType(RoomType roomType);
+    public Task<List<Room?>> GetRoomsByStatus(RoomStatus status);
+    
 }

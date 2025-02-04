@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestExperience", "GuestExperience\GuestExperience.csproj", "{F10DF83E-51D0-4CA1-BA5B-FC2163252109}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestExperienceTests", "GuestExperienceTests\GuestExperienceTests.csproj", "{E962BC66-142F-4992-83F8-355632285286}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestExperience.Tests", "GuestExperience.Tests\GuestExperience.Tests.csproj", "{E962BC66-142F-4992-83F8-355632285286}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
