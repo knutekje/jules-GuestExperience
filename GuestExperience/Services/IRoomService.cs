@@ -11,6 +11,6 @@ public interface IRoomService
     public Task<Room?> GetRoomById(int id);
     public Task<List<Room?>> GetRoomsByFloor(int floor);
     public Task<List<Room?>> GetRoomsByRoomType(RoomType roomType);
-    public Task<List<Room?>> GetRoomsByStatus(RoomStatus status);
+    public Task<List<Room>> GetRoomsByStatus(RoomStatus status);
     
 }

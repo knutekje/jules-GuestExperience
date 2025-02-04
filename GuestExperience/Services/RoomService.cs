@@ -56,7 +56,7 @@ public class RoomService : IRoomService
         
     }
 
-    public async Task<List<Room?>> GetRoomsByStatus(RoomStatus status)
+    public async Task<List<Room>> GetRoomsByStatus(RoomStatus status)
     {
         return await _roomRepository.GetRoomsByStatus(status);
     }
