@@ -9,7 +9,7 @@ namespace GuestExperience.Repositories
     public interface IRoomRepository
     {
         Task<List<Room>> GetAllRoomsAsync();
-        Task<Room> GetRoomAsync(int id);
+        Task<Room> GetRoomByIdAsync(int id);
         Task<Room> AddRoomAsync(Room room);
         Task<Room> UpdateRoomAsync(Room room);
         Task<Room> DeleteRoomAsync(Room room);

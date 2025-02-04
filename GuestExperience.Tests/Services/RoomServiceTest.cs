@@ -1,7 +1,9 @@
 using GuestExperience.Data;
+using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Repositories;
 using GuestExperience.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Moq;
 using SQLitePCL;
 using Xunit.Abstractions;
@@ -40,8 +42,11 @@ public class RoomServiceTest
         _mockRoomRepository.Setup(r => r.GetRoomsByRoomType(It.IsAny<RoomType>()))
             .ReturnsAsync((RoomType type) => _rooms.Where(r => r.RoomType == type).ToList());
         
-        _mockRoomRepository.Setup(r => r.GetRoomAsync(It.IsAny<int>()))!
+        _mockRoomRepository.Setup(r => r.GetRoomByIdAsync(It.IsAny<int>()))!
             .ReturnsAsync((int id)=> _rooms.FirstOrDefault(r => r.Id == id));
+        
+        /**/
+      
 
         _roomService = new RoomService(_mockRoomRepository.Object);
     }
@@ -139,7 +144,7 @@ public class RoomServiceTest
     [Fact]
     public async Task GetRoomsByRoomType_ReturnsRoomsByRoomType()
     {
-        populateRooms();
+        await populateRooms();
         var room = await _roomService.GetRoomsByRoomType(RoomType.Standard);
         Assert.Equal(3, room.Count);
     }
@@ -149,9 +154,69 @@ public class RoomServiceTest
     public async Task GetRoomsByRoomId_ReturnsRoomsByRoomId()
     {
         await populateRooms();
-
-        int roomId = 112;
-        await _roomService.GetRoomById(roomId);
+        const int roomId = 152;
+        var room = await _roomService.GetRoomById(roomId);
+        
     }
-    
+
+    [Fact]
+    public async Task GetRoomById_NotFoundById()
+    {
+        
+        _mockRoomRepository
+            .Setup(repo => repo.GetRoomByIdAsync(It.IsAny<int>()))
+            .ThrowsAsync(new RoomNotFoundException("Room not found"));
+        
+        await populateRooms();
+        await Assert.ThrowsAsync<RoomNotFoundException>(() => _roomService.GetRoomById(123));
+        
+        
+        
+    }
+
+    [Fact]
+    public async Task CreateRoomAsync_RoomCreated()
+    {
+        _mockRoomRepository.Setup(r => r.AddRoomAsync(It.IsAny<Room>()))
+            .ReturnsAsync((Room room) => room);
+        
+        var room = await _roomService.CreateRoomAsync(new Room
+        {
+            Id = 12,
+            RoomNumber = 0,
+            RoomType = RoomType.Standard,
+            Capacity = 0,
+            Status = RoomStatus.Clean,
+            PriceId = 0,
+            Floor = 0,
+            ExtraBed = false,
+            LastMaintained = null,
+            CreatedAt = null,
+            UpdatedAt = null
+        });
+        
+        Assert.Equal(12, room.Id);
+    }
+
+    [Fact]
+    public async Task CreateRoomAsync_DuplicateRoom()
+    {
+        Room room = new Room
+        {
+            Id = 13,
+            RoomNumber = 0,
+            RoomType = RoomType.Standard,
+            Capacity = 0,
+            Status = RoomStatus.Clean,
+            PriceId = 0,
+            Floor = 0,
+            ExtraBed = false,
+            LastMaintained = null,
+            CreatedAt = null,
+            UpdatedAt = null
+        };
+        await _roomService.CreateRoomAsync(room);
+        await Assert.ThrowsAsync<RoomCreateFailedException>(() => _roomService.CreateRoomAsync(room));
+        
+    }
 }

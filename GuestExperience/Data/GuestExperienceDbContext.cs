@@ -11,5 +11,6 @@ namespace GuestExperience.Data
             
         }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Guest> Guests { get; set; }
     }
 }

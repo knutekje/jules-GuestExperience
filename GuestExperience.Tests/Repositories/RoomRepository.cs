@@ -42,7 +42,7 @@ namespace GuestExperience.Tests.Repositories
             Assert.NotEqual(0, addedRoom.Id); 
             Assert.Equal(101, addedRoom.RoomNumber);
 
-            var retrievedRoom = await repository.GetRoomAsync(addedRoom.Id);
+            var retrievedRoom = await repository.GetRoomByIdAsync(addedRoom.Id);
             Assert.NotNull(retrievedRoom);
             Assert.Equal(101, retrievedRoom.RoomNumber);
             Assert.Equal(2, retrievedRoom.Capacity);
