@@ -47,7 +47,7 @@ public class GuestRepository : IGuestRepository
 
     }
 
-    public async Task<Guest> GetGuest(int guestId)
+    public async Task<Guest> GetGuestByIdAsync(int guestId)
     {
         var guest = await _context.Guests.FindAsync(guestId) ?? throw new CreateGuestException("Error while getting guest");
         try

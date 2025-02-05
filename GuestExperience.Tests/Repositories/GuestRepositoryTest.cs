@@ -42,7 +42,7 @@ public class GuestRepositoryTest
         Assert.NotNull(addedGuest);
         Assert.Equal(addedGuest.FirstName, guest.FirstName);
         
-        var fetchedGuest = await repository.GetGuest(addedGuest.Id);
+        var fetchedGuest = await repository.GetGuestByIdAsync(addedGuest.Id);
         Assert.Equal(addedGuest.FirstName, fetchedGuest.FirstName);
         
         
@@ -54,7 +54,7 @@ public class GuestRepositoryTest
         using var context = GetInMemoryDbContext();
         var repository = new GuestRepository(context);
     
-        await Assert.ThrowsAsync<CreateGuestException>(() => repository.GetGuest(123));
+        await Assert.ThrowsAsync<CreateGuestException>(() => repository.GetGuestByIdAsync(123));
     }
 
 
@@ -139,7 +139,7 @@ public class GuestRepositoryTest
         using var context = GetInMemoryDbContext();
         var repository = new GuestRepository(context);
         var result =await repository.AddGuestAsync(guest);
-        var fetchedGuest = await repository.GetGuest(result.Id);
+        var fetchedGuest = await repository.GetGuestByIdAsync(result.Id);
         Assert.NotNull(fetchedGuest);
         Assert.Equal(fetchedGuest.Id, result.Id);
     }

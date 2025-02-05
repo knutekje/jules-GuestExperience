@@ -27,10 +27,18 @@ public class GuestService : IGuestService
         }
         
     }
-// TODO HERE WE GO
     public Task<Guest> GetGuestAsync(int guestId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var  response = _repository.GetGuestByIdAsync(guestId);
+            return response;
+        }
+        catch
+        {
+            throw new GuestServiceException($"Unable to get guest with id {guestId}");
+        }
+        
     }
 
     public Task<List<Guest>> GetGuestsAsync()
