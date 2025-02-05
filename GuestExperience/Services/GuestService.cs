@@ -41,9 +41,17 @@ public class GuestService : IGuestService
         
     }
 
-    public Task<List<Guest>> GetGuestsAsync()
+    public Task<List<Guest>> GetAllGuestAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = _repository.GetGuests();
+            return response;
+        }
+        catch
+        {
+            throw new GuestServiceException("Unable to get all guests");
+        };
     }
 
     public Task DeleteGuestAsync(int guestId)

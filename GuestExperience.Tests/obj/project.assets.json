@@ -3682,32 +3682,39 @@
     ]
   },
   "packageFolders": {
-    "/home/knutekje/.nuget/packages/": {}
+    "C:\\Users\\Knut Edvard Kjersem\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience.Tests/GuestExperience.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience.Tests\\GuestExperience.Tests.csproj",
       "projectName": "GuestExperience.Tests",
-      "projectPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience.Tests/GuestExperience.Tests.csproj",
-      "packagesPath": "/home/knutekje/.nuget/packages/",
-      "outputPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience.Tests/obj/",
+      "projectPath": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience.Tests\\GuestExperience.Tests.csproj",
+      "packagesPath": "C:\\Users\\Knut Edvard Kjersem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience.Tests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/knutekje/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Knut Edvard Kjersem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj": {
-              "projectPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj"
+            "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience\\GuestExperience.csproj": {
+              "projectPath": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience\\GuestExperience.csproj"
             }
           }
         }
@@ -3765,7 +3772,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/knutekje/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Knut Edvard Kjersem\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -4651,24 +4651,31 @@
     ]
   },
   "packageFolders": {
-    "/home/knutekje/.nuget/packages/": {}
+    "C:\\Users\\Knut Edvard Kjersem\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj",
+      "projectUniqueName": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience\\GuestExperience.csproj",
       "projectName": "GuestExperience",
-      "projectPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/GuestExperience.csproj",
-      "packagesPath": "/home/knutekje/.nuget/packages/",
-      "outputPath": "/home/knutekje/Documents/Jules/GuestExperience/GuestExperience/obj/",
+      "projectPath": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience\\GuestExperience.csproj",
+      "packagesPath": "C:\\Users\\Knut Edvard Kjersem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Knut Edvard Kjersem\\RiderProjects\\jules-GuestExperience\\GuestExperience\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/knutekje/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Knut Edvard Kjersem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4787,7 +4794,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/knutekje/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Knut Edvard Kjersem\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
