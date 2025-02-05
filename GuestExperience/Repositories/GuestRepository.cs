@@ -71,5 +71,36 @@ public class GuestRepository : IGuestRepository
             throw new CreateGuestException("Error while getting guests");
         }
     }
-    
+
+    public async Task<Guest> UpdateGuest(Guest guest)
+    {
+        try
+        {
+            _context.Guests.Update(guest);
+            var something = await _context.SaveChangesAsync();
+            return guest;
+        }
+        catch(System.Exception ex)
+        {
+            throw new GuestServiceException("Error while updating guest", ex);
+        }
+    }
+
+    public async Task<Guest> GetGuestByEmail(string email)
+    {
+        if (email == null)
+        {
+            throw new BadHttpRequestException("no valid email provided");
+        }
+        try
+        {
+            var guest =  _context.Guests.FirstOrDefault(guest => guest.Email == email);
+            return guest;
+        }
+        catch (System.Exception e)
+        {
+            throw new GuestServiceException("Error while getting guest", e);
+        }
+
+    }
 }

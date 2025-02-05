@@ -9,4 +9,5 @@ public interface IGuestService
     public Task<List<Guest>> GetAllGuestAsync();
     public Task DeleteGuestAsync(int guestId);
     public Task<Guest> UpdateGuestAsync(Guest guest);
+    public Task<Guest> GetGuestByEmailAsync(string email);
 }

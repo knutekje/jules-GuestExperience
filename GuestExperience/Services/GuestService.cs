@@ -56,11 +56,47 @@ public class GuestService : IGuestService
 
     public Task DeleteGuestAsync(int guestId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var room = _repository.DeleteGuest(guestId);
+            return room;
+        }
+        catch (System.Exception ex)
+        {
+            throw new GuestServiceException("DeleteGuestAsync error", ex);
+        }
     }
 
     public Task<Guest> UpdateGuestAsync(Guest guest)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var result = _repository.UpdateGuest(guest);
+            return result;
+        }
+        catch
+        {
+            throw new GuestServiceException("UpdateGuestAsync error");
+        }
+    }
+
+    public Task<Guest> GetGuestByEmailAsync(string email)
+    {
+        if (email == null)
+        {
+            throw new GuestServiceException("Email is null");
+        }
+
+        
+        try
+        {
+            var result =  _repository.GetGuestByEmail(email);
+            return result;
+
+        }
+        catch(System.Exception e)
+        {
+            throw new GuestServiceException("Unable to get guest by email", e);
+        }
     }
 }

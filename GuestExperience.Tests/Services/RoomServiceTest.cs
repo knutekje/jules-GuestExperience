@@ -45,9 +45,6 @@ public class RoomServiceTest
         _mockRoomRepository.Setup(r => r.GetRoomByIdAsync(It.IsAny<int>()))!
             .ReturnsAsync((int id)=> _rooms.FirstOrDefault(r => r.Id == id));
         
-        /**/
-      
-
         _roomService = new RoomService(_mockRoomRepository.Object);
     }
 
@@ -70,7 +67,6 @@ public class RoomServiceTest
         
         await _roomService.CreateRoomAsync(new Room
         {
-            //Id = 0,
             RoomNumber = 122,
             RoomType = RoomType.Double,
             Capacity = 0,
@@ -82,6 +78,7 @@ public class RoomServiceTest
             CreatedAt = null,
             UpdatedAt = null
         });
+        
         await _roomService.CreateRoomAsync(new Room
         {
             //Id = 0,
