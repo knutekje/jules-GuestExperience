@@ -16,4 +16,5 @@ public class Guest
     public string Nationality { get; set; }
     public DateTime createdAt { get; set; }
     public DateTime updatedAt { get; set; }
+    public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }

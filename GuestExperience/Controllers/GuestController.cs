@@ -84,7 +84,7 @@ public class GuestController: ControllerBase
         }
     }
 
-    [HttpGet("{email:string}")]
+    [HttpGet("{email}")]
     public async Task<IActionResult> GetGuestByEmailAsync(string email)
     {
         try

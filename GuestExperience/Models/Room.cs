@@ -39,6 +39,7 @@ public class Room
     
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
+    public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }
 
 public enum RoomStatus
