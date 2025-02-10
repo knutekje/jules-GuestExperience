@@ -346,13 +346,4 @@
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/obj/Debug/net9.0/GuestExperience.Tests.pdb
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/obj/Debug/net9.0/GuestExperience.Tests.genruntimeconfig.cache
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/obj/Debug/net9.0/ref/GuestExperience.Tests.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Caching.Abstractions.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Caching.Memory.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
-/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/System.Text.Json.dll
+/home/knutekje/Documents/jules-GuestExperience/GuestExperience.Tests/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll
