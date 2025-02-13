@@ -1,58 +1,39 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-namespace GuestExperience.Models;
-
-[Table("room")]
-public class Room
+namespace GuestExperience.Models
 {
-    [Column("id")]
-    public int Id { get; set; }
-    
-    [Column("room_number")]
-    public int RoomNumber { get; set; }
-    
-    [Column("room_type")]
-    public RoomType RoomType { get; set; }
-    
-    [Column("capacity")]
-    public int Capacity { get; set; }
-    
-    [Column("status")]
-    public RoomStatus Status { get; set; }
-    
-    [Column("price_id")]
-    public int PriceId {get; set;}
-    
-    [Column("floor")]
-    public int Floor { get; set; }
-    
-    [Column("extra_bed")]
-    public Boolean ExtraBed { get; set; }
-    
-    [Column("last_maintained")]
-    public DateTime? LastMaintained { get; set; }
-    
-    [Column("created_at")]
-    public DateTime? CreatedAt { get; set; }
-    
-    [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-    public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-}
+    public class Room
+    {
+        public int Id { get; set; }
+        public int RoomNumber { get; set; }
+        public RoomType RoomType { get; set; }
+        public int Capacity { get; set; }
+        public RoomStatus Status { get; set; }
+        public int PriceId { get; set; }
+        public int Floor { get; set; }
+        public bool ExtraBed { get; set; }
+        public DateTime? LastMaintained { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        
+        [JsonIgnore]
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+    }
 
-public enum RoomStatus
-{
-    Clean,
-    Dirty,
-    OutOfService
-}
+    public enum RoomStatus
+    {
+        Clean,
+        Dirty,
+        OutOfService
+    }
 
-public enum RoomType
-{
-    Standard,
-    Double,
-    Suite,
-    Family
+    public enum RoomType
+    {
+        Standard,
+        Double,
+        Suite,
+        Family
+    }
 }

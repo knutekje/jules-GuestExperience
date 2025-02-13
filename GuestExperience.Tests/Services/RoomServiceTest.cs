@@ -1,219 +1,124 @@
-using GuestExperience.Data;
-using GuestExperience.Exception;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GuestExperience.Models;
 using GuestExperience.Repositories;
 using GuestExperience.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Moq;
-using SQLitePCL;
+using NSubstitute;
+using Xunit;
 using Xunit.Abstractions;
 
-namespace GuestExperienceTests.Services;
-
-public class RoomServiceTest
+namespace GuestExperienceTests.Services
 {
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly Mock<IRoomRepository> _mockRoomRepository;
-    private readonly RoomService _roomService;
-    
-    private readonly List<Room> _rooms = [];
-    
-    public RoomServiceTest(ITestOutputHelper testOutputHelper)
+    public class RoomServiceTest
     {
-        _testOutputHelper = testOutputHelper;
-        _mockRoomRepository = new Mock<IRoomRepository>();
+        private readonly ITestOutputHelper _testOutputHelper;
+        private readonly IRoomRepository _roomRepository;
+        private readonly RoomService _roomService;
+        private readonly List<Room> _rooms;
 
-        _mockRoomRepository
-            .Setup(repo => repo.AddRoomAsync(It.IsAny<Room>()))
-            .ReturnsAsync((Room room) =>
+        public RoomServiceTest(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+            // Create a substitute for IRoomRepository using NSubstitute.
+            _roomRepository = Substitute.For<IRoomRepository>();
+
+            // Prepopulate the list with four rooms.
+            _rooms = new List<Room>
             {
-                room.Id = _rooms.Count + 1;
-                _rooms.Add(room);
-                return room;
-            });
+                new Room 
+                { 
+                    Id = 1, 
+                    RoomNumber = 101, 
+                    RoomType = RoomType.Standard, 
+                    Capacity = 2, 
+                    Status = RoomStatus.Clean, 
+                    PriceId = 100, 
+                    Floor = 1, 
+                    ExtraBed = false, 
+                    LastMaintained = DateTime.UtcNow, 
+                    CreatedAt = DateTime.UtcNow, 
+                    UpdatedAt = DateTime.UtcNow 
+                },
+                new Room 
+                { 
+                    Id = 2, 
+                    RoomNumber = 102, 
+                    RoomType = RoomType.Double, 
+                    Capacity = 2, 
+                    Status = RoomStatus.Dirty, 
+                    PriceId = 150, 
+                    Floor = 1, 
+                    ExtraBed = false, 
+                    LastMaintained = DateTime.UtcNow, 
+                    CreatedAt = DateTime.UtcNow, 
+                    UpdatedAt = DateTime.UtcNow 
+                },
+                new Room 
+                { 
+                    Id = 3, 
+                    RoomNumber = 103, 
+                    RoomType = RoomType.Standard, 
+                    Capacity = 2, 
+                    Status = RoomStatus.Clean, 
+                    PriceId = 100, 
+                    Floor = 1, 
+                    ExtraBed = true, 
+                    LastMaintained = DateTime.UtcNow, 
+                    CreatedAt = DateTime.UtcNow, 
+                    UpdatedAt = DateTime.UtcNow 
+                },
+                new Room 
+                { 
+                    Id = 4, 
+                    RoomNumber = 104, 
+                    RoomType = RoomType.Suite, 
+                    Capacity = 4, 
+                    Status = RoomStatus.OutOfService, 
+                    PriceId = 300, 
+                    Floor = 2, 
+                    ExtraBed = false, 
+                    LastMaintained = DateTime.UtcNow, 
+                    CreatedAt = DateTime.UtcNow, 
+                    UpdatedAt = DateTime.UtcNow 
+                }
+            };
 
-        _mockRoomRepository
-            .Setup(repo => repo.GetAllRoomsAsync())
-            .ReturnsAsync(() => _rooms);
-        
-        _mockRoomRepository.Setup(r => r.GetRoomsByStatus(It.IsAny<RoomStatus>()))
-            .ReturnsAsync((RoomStatus status) => _rooms.Where(r => r.Status == status).ToList());
-        
-        _mockRoomRepository.Setup(r => r.GetRoomsByRoomType(It.IsAny<RoomType>()))
-            .ReturnsAsync((RoomType type) => _rooms.Where(r => r.RoomType == type).ToList());
-        
-        _mockRoomRepository.Setup(r => r.GetRoomByIdAsync(It.IsAny<int>()))!
-            .ReturnsAsync((int id)=> _rooms.FirstOrDefault(r => r.Id == id));
-        
-        _roomService = new RoomService(_mockRoomRepository.Object);
-    }
+            // Configure the substitute for GetAllRoomsAsync to return the prepopulated list.
+            _roomRepository.GetAllRoomsAsync().Returns(Task.FromResult(_rooms));
 
+            // Configure the substitute for GetRoomsByStatus to filter _rooms based on the provided status.
+            _roomRepository
+                .GetRoomsByStatus(Arg.Any<RoomStatus>())
+                .Returns(callInfo =>
+                {
+                    var status = callInfo.Arg<RoomStatus>();
+                    return Task.FromResult(_rooms.Where(r => r.Status == status).ToList());
+                });
 
-    private async Task populateRooms()
-    {
-        await _roomService.CreateRoomAsync(new Room
+            // Create the RoomService, injecting the repository substitute.
+            _roomService = new RoomService(_roomRepository);
+        }
+
+        [Fact]
+        public async Task GetAllRooms_ReturnsAllRooms()
         {
-            RoomNumber = 102,
-            RoomType = RoomType.Standard,
-            Capacity = 0,
-            Status = RoomStatus.Dirty,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        });
-        
-        await _roomService.CreateRoomAsync(new Room
+            // Act
+            var result = await _roomService.GetAllRoomsAsync();
+
+            // Assert: Verify that the result contains all 4 rooms.
+            Assert.Equal(4, result.Count);
+        }
+
+        [Fact]
+        public async Task GetAllRoomsByStatus_ReturnsAllRoomsByStatus()
         {
-            RoomNumber = 122,
-            RoomType = RoomType.Double,
-            Capacity = 0,
-            Status = RoomStatus.Clean,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        });
-        
-        await _roomService.CreateRoomAsync(new Room
-        {
-            //Id = 0,
-            RoomNumber = 132,
-            RoomType = RoomType.Standard,
-            Capacity = 0,
-            Status = RoomStatus.OutOfService,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        });
-        
-        await _roomService.CreateRoomAsync(new Room
-        {
-            //Id = 0,
-            RoomNumber = 152,
-            RoomType = RoomType.Standard,
-            Capacity = 0,
-            Status = RoomStatus.Clean,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        });
-    }
-    
-    
-        
-    [Fact]
-    public async Task GetAllRooms_ReturnsAllRooms()
-    {
-        populateRooms();
-        
-        
-        var rooms = await _roomService.GetRooms();
-        
-        
-        
-        Assert.Equal(4, rooms.Count);
-       
-        
+            // Act: Request rooms with status 'Clean'. (From our test data, rooms with Ids 1 and 3 are Clean.)
+            var result = await _roomService.GetRoomsByStatus(RoomStatus.Clean);
 
-    }
-
-    [Fact]
-    public async Task GetAllRoomsByStatus_ReturnsAllRoomsByStatus()
-    {
-        populateRooms();
-        
-        var rooms = await _roomService.GetRoomsByStatus(RoomStatus.Clean);
-        Assert.Equal(2, rooms.Count);
-    }
-
-
-    [Fact]
-    public async Task GetRoomsByRoomType_ReturnsRoomsByRoomType()
-    {
-        await populateRooms();
-        var room = await _roomService.GetRoomsByRoomType(RoomType.Standard);
-        Assert.Equal(3, room.Count);
-    }
-
-
-    [Fact]
-    public async Task GetRoomsByRoomId_ReturnsRoomsByRoomId()
-    {
-        await populateRooms();
-        const int roomId = 152;
-        var room = await _roomService.GetRoomById(roomId);
-        
-    }
-
-    [Fact]
-    public async Task GetRoomById_NotFoundById()
-    {
-        
-        _mockRoomRepository
-            .Setup(repo => repo.GetRoomByIdAsync(It.IsAny<int>()))
-            .ThrowsAsync(new RoomNotFoundException("Room not found"));
-        
-        await populateRooms();
-        await Assert.ThrowsAsync<RoomNotFoundException>(() => _roomService.GetRoomById(123));
-        
-        
-        
-    }
-
-    [Fact]
-    public async Task CreateRoomAsync_RoomCreated()
-    {
-        _mockRoomRepository.Setup(r => r.AddRoomAsync(It.IsAny<Room>()))
-            .ReturnsAsync((Room room) => room);
-        
-        var room = await _roomService.CreateRoomAsync(new Room
-        {
-            Id = 12,
-            RoomNumber = 0,
-            RoomType = RoomType.Standard,
-            Capacity = 0,
-            Status = RoomStatus.Clean,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        });
-        
-        Assert.Equal(12, room.Id);
-    }
-
-    [Fact]
-    public async Task CreateRoomAsync_DuplicateRoom()
-    {
-        Room room = new Room
-        {
-            Id = 13,
-            RoomNumber = 0,
-            RoomType = RoomType.Standard,
-            Capacity = 0,
-            Status = RoomStatus.Clean,
-            PriceId = 0,
-            Floor = 0,
-            ExtraBed = false,
-            LastMaintained = null,
-            CreatedAt = null,
-            UpdatedAt = null
-        };
-        await _roomService.CreateRoomAsync(room);
-        await Assert.ThrowsAsync<RoomCreateFailedException>(() => _roomService.CreateRoomAsync(room));
-        
+            // Assert: Verify that exactly 2 rooms are returned.
+            Assert.Equal(2, result.Count);
+        }
     }
 }

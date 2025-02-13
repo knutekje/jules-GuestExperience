@@ -17,7 +17,7 @@ public class GuestController: ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<Guest>> GetAsync()
+    public async Task<List<Guest>> GetAllGuestsAsync()
     {
         return await _guestService.GetAllGuestAsync();
     }

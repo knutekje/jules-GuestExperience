@@ -1,4 +1,6 @@
 using System.Net;
+using AutoMapper;
+using GuestExperience.DTOs;
 using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Services;
@@ -13,25 +15,35 @@ namespace GuestExperience.Controllers;
 public class RoomController : ControllerBase
 {
     private readonly IRoomService _roomService;
+    private readonly IMapper _mapper;
 
-    public RoomController(IRoomService roomService)
+    public RoomController(IRoomService roomService, IMapper mapper)
     {
+        _mapper = mapper;
         _roomService = roomService;
     }
 
     [HttpGet]
     public async Task<IEnumerable<Room>> GetRooms()
     {
-        return await _roomService.GetRooms();
+        try
+        {
+            return await _roomService.GetAllRoomsAsync();
+        }
+        catch (System.Exception ex)
+        {
+            throw new  ControllerException($"Failed to retrieve all rooms {ex}");
+        }
+        
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateRoom([FromBody] Room room)
+    public async Task<IActionResult> CreateRoom([FromBody] RoomDTO roomDto)
     {
-        if (room == null)
+        /*if (room == null)
         {
             return BadRequest("Room data is required.");
-        }
+        }*/
         
         if (!ModelState.IsValid)
         {
@@ -40,14 +52,11 @@ public class RoomController : ControllerBase
 
         try
         {
+            var room = _mapper.Map<Room>(roomDto);
             var createdRoom = await _roomService.CreateRoomAsync(room);
 
-            if (createdRoom == null)
-            {
-                return StatusCode(500, "Room creation failed due to an unknown error.");
-            }
-
-            return CreatedAtAction(nameof(GetRoomById), new { id = createdRoom.Id }, createdRoom);
+            var createdRoomDto = _mapper.Map<RoomDTO>(createdRoom);
+            return CreatedAtAction(nameof(GetRoomById), new { id = createdRoom.Id }, createdRoomDto);
         }
         catch (RoomValidationException ex)
         {
@@ -57,9 +66,9 @@ public class RoomController : ControllerBase
         {
             return Conflict(ex.Message);
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
-            return StatusCode(500, "An error occurred while creating the room.");
+            return StatusCode(500, "An error occurred while creating the room." + ex.Message);
         }
     }
 
@@ -73,6 +82,39 @@ public class RoomController : ControllerBase
             return NotFound();
         }
         return Ok(room);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateRoom(int id, [FromBody] Room room)
+    {
+        try
+        {
+            await _roomService.UpdateRoomAsync(room);
+            return NoContent();
+        }
+        catch (System.Exception ex)
+        {
+            throw new  ControllerException($"Failed to update room {ex}");
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteRoom(int id)
+    {
+        try
+        {
+            var result =  await _roomService.DeleteRoom(id);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return Ok(new {message = "Room deleted successfully"});
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw new  ControllerException($"Failed to delete room {ex}");
+        }
     }
     
 }

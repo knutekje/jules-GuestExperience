@@ -33,8 +33,8 @@ public class GuestRepositoryTest
             Address = "HomeStreet 12",
             City = "CityHights",
             Nationality = "Yankee",
-            createdAt = DateTime.Now,
-            updatedAt = DateTime.Now + TimeSpan.FromDays(7),
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now + TimeSpan.FromDays(7),
         };
         
         var addedGuest = await repository.AddGuestAsync(guest);
@@ -72,8 +72,8 @@ public class GuestRepositoryTest
             Address = "123 Main St",
             City = "New York",
             Nationality = "American",
-            createdAt = DateTime.UtcNow,
-            updatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         });
 
         await repository.AddGuestAsync(new Guest
@@ -85,8 +85,8 @@ public class GuestRepositoryTest
             Address = "456 Elm St",
             City = "Los Angeles",
             Nationality = "American",
-            createdAt = DateTime.UtcNow,
-            updatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         });
 
         await repository.AddGuestAsync(new Guest
@@ -98,8 +98,8 @@ public class GuestRepositoryTest
             Address = "789 Oak St",
             City = "Chicago",
             Nationality = "American",
-            createdAt = DateTime.UtcNow,
-            updatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         });
 
         await repository.AddGuestAsync(new Guest
@@ -111,8 +111,8 @@ public class GuestRepositoryTest
             Address = "321 Pine St",
             City = "Houston",
             Nationality = "American",
-            createdAt = DateTime.UtcNow,
-            updatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         });
     
 
@@ -133,8 +133,8 @@ public class GuestRepositoryTest
             Address = "321 Pine St",
             City = "Houston",
             Nationality = "American",
-            createdAt = DateTime.UtcNow,
-            updatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
         using var context = GetInMemoryDbContext();
         var repository = new GuestRepository(context);

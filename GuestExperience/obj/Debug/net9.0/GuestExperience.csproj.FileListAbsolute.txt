@@ -461,3 +461,5 @@
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience/obj/Debug/net9.0/GuestExperience.genruntimeconfig.cache
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience/obj/Debug/net9.0/ref/GuestExperience.dll
 /home/knutekje/Documents/jules-GuestExperience/GuestExperience/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll
+/home/knutekje/Documents/jules-GuestExperience/GuestExperience/bin/Debug/net9.0/AutoMapper.dll
+/home/knutekje/Documents/jules-GuestExperience/GuestExperience/bin/Debug/net9.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

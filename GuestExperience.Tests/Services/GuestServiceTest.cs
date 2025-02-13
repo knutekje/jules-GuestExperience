@@ -24,8 +24,8 @@ public class GuestServiceTest
         Address = "homestreet 12",
         City = "gotham",
         Nationality = "astonian",
-        createdAt = DateTime.UtcNow,
-        updatedAt = DateTime.UtcNow + TimeSpan.FromDays(5),
+        CreatedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow + TimeSpan.FromDays(5),
     };
 
     public GuestServiceTest()

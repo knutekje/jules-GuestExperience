@@ -3,42 +3,71 @@ using GuestExperience.Exception;
 using GuestExperience.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace GuestExperience.Repositories;
 
 public class RoomRepository : IRoomRepository
 {
     private readonly GuestExperienceDbContext _context; 
+    private readonly ILogger<RoomRepository> _logger;
     
-    public RoomRepository(GuestExperienceDbContext context)
+    public RoomRepository(GuestExperienceDbContext context, ILogger<RoomRepository> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     public async Task<List<Room>> GetAllRoomsAsync()
     {
-        if (_context.Rooms == null)
-        {
-            throw new RoomNotFoundException("No rooms not found");
-        }
-        return await _context.Rooms.ToListAsync();
-    }
-    
-    public async Task<Room> GetRoomByIdAsync(int id){
-      
-        
-        return await _context.Rooms.FindAsync(id) ?? throw new RoomNotFoundException("Room not found.");
-        
-        }
-    
-    public async Task<Room> AddRoomAsync(Room room){
         try
         {
-            await _context.Rooms.AddAsync(room);
-            await _context.SaveChangesAsync();
+            return await _context.Rooms.ToListAsync();
         }
         catch (System.Exception ex)
         {
-            throw new RoomCreateFailedException("Unable to create room {room} with exception", ex);
+            
+            throw new RepositoryException($"Failed to fetch all rooms {ex}");        }
+    }
+    
+    
+    
+    
+    public async Task<Room> GetRoomByIdAsync(int id){
+        if (id == 0)
+        {
+            throw new RepositoryException("No id provided");
+        }
+        try
+        {
+            
+            var foundRoom = await _context.Rooms.FindAsync(id);
+            if (foundRoom == null)
+            {
+                throw new RepositoryException("Room not found");
+            }
+            return foundRoom;
+        }
+        catch (System.Exception e)
+        { 
+          throw new RepositoryException($"Error while fetching room with {id} : {e.Message} ");
+        }
+        
+        
+    }
+    
+    public async Task<Room> AddRoomAsync(Room room){
+        if (room == null)
+        {
+            throw new RoomCreateFailedException("Room is null"); 
+        }
+        try
+        {
+            await _context.Rooms.AddAsync(room);
+            await _context.SaveChangesAsync();            
+        }
+        catch (System.Exception ex)
+        {
+            throw new RepositoryException($"Unable to create room {room} with exception {ex}");
         }
 
         return room;
@@ -48,27 +77,35 @@ public class RoomRepository : IRoomRepository
     {
         try
         {
-            _context.Entry(room).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return room;
+           _context.Rooms.Update(room);
+           await _context.SaveChangesAsync();
+           return room;
+
         }
         catch(System.Exception ex)
         {
-            throw new RoomCreateFailedException("Unable to create room with exception", ex);
+            //_logger.LogError($"Error updating room: {ex.Message}");
+            throw new RepositoryException($"Unable to create room {ex}");
         }
     }
 
-    public async Task<Room> DeleteRoomAsync(Room room)
+    public async Task<bool> DeleteRoomAsync(int id)
     {
         try
         {
+            var room = await _context.Rooms.FindAsync(id);
+            if (room == null)
+            {
+                return false;
+            }
             _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
-            return room;
+            return true;
         }
-        catch(System.Exception ex)
+        catch (System.Exception ex)
         {
-            throw new RoomNotFoundException("Room couldnt be found",ex);
+            throw new RepositoryException($"Unable to delete room {id} : {ex.Message}");
+            
         }
     }
 

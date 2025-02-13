@@ -5,12 +5,15 @@ using Xunit;
 using GuestExperience.Data;
 using GuestExperience.Models;
 using GuestExperience.Repositories;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 
 namespace GuestExperience.Tests.Repositories
 {
     public class RoomRepositoryTests
     {
-        
+        private ILogger<RoomRepository> _logger;
+
         private GuestExperienceDbContext GetInMemoryDbContext()
         {
             var options = new DbContextOptionsBuilder<GuestExperienceDbContext>()
@@ -24,7 +27,8 @@ namespace GuestExperience.Tests.Repositories
         public async Task AddRoomAsync_AddsRoomSuccessfully()
         {
             using var context = GetInMemoryDbContext();
-            var repository = new RoomRepository(context);
+            _logger = Substitute.For<ILogger<RoomRepository>>();
+            var repository = new RoomRepository(context, _logger);
             
             var room = new Room
             {

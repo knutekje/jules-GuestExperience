@@ -14,7 +14,7 @@ public class BookingRepository : IBookingRepository
         _context = context;
     }
     
-    public async Task<IEnumerable<Booking>> GetAllBookings()
+    public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
     {
         try
         {
@@ -27,7 +27,7 @@ public class BookingRepository : IBookingRepository
         
     }
 
-    public Task<Booking> GetBookingById(int id)
+    public Task<Booking> GetBookingByIdAsync(int id)
     {
         try
         {
@@ -44,7 +44,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public Task<Booking> CreateBooking(Booking booking)
+    public Task<Booking> CreateBookingAsync(Booking booking)
     {
         try
         {
@@ -62,7 +62,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public Task<Booking> UpdateBooking(Booking booking)
+    public Task<Booking> UpdateBookingAsync(Booking booking)
     {
         try
         {
@@ -80,7 +80,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public Task DeleteBooking(Booking booking)
+    public Task DeleteBookingAsync(Booking booking)
     {
         try
         {
@@ -100,7 +100,7 @@ public class BookingRepository : IBookingRepository
 
     }
 
-    public Task<IEnumerable<Booking>> GetBookingsForGuest(int guestId)
+    public Task<IEnumerable<Booking>> GetBookingsForGuestAsync(int guestId)
     {
         throw new NotImplementedException();
     }

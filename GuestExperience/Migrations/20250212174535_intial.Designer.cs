@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuestExperience.Migrations
 {
     [DbContext(typeof(GuestExperienceDbContext))]
-    [Migration("20250206062416_intial")]
+    [Migration("20250212174535_intial")]
     partial class intial
     {
         /// <inheritdoc />
@@ -27,12 +27,14 @@ namespace GuestExperience.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CheckIn")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime")
+                        .HasColumnName("check_in");
 
                     b.Property<DateTime>("CheckOut")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime")
+                        .HasColumnName("check_out");
 
-                    b.Property<int>("GuestId")
+                    b.Property<int>("ReservationId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("RoomId")
@@ -40,11 +42,11 @@ namespace GuestExperience.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuestId");
+                    b.HasIndex("ReservationId");
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("booking", (string)null);
                 });
 
             modelBuilder.Entity("GuestExperience.Models.Guest", b =>
@@ -55,56 +57,87 @@ namespace GuestExperience.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("address");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("city");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("email");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("first_name");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_name");
 
                     b.Property<string>("Nationality")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nationality");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("phone_number");
 
-                    b.Property<DateTime>("createdAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("updatedAt")
-                        .HasColumnType("TEXT");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
-                    b.ToTable("guest");
+                    b.ToTable("guest", (string)null);
+                });
+
+            modelBuilder.Entity("GuestExperience.Models.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GuestId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuestId");
+
+                    b.ToTable("reservation", (string)null);
                 });
 
             modelBuilder.Entity("GuestExperience.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("id");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("INTEGER")
                         .HasColumnName("capacity");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime")
                         .HasColumnName("created_at");
 
                     b.Property<bool>("ExtraBed")
@@ -136,19 +169,22 @@ namespace GuestExperience.Migrations
                         .HasColumnName("status");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime")
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
-                    b.ToTable("room");
+                    b.HasIndex("RoomNumber")
+                        .IsUnique();
+
+                    b.ToTable("room", (string)null);
                 });
 
             modelBuilder.Entity("GuestExperience.Models.Booking", b =>
                 {
-                    b.HasOne("GuestExperience.Models.Guest", "Guest")
+                    b.HasOne("GuestExperience.Models.Reservation", "Reservation")
                         .WithMany("Bookings")
-                        .HasForeignKey("GuestId")
+                        .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -158,12 +194,28 @@ namespace GuestExperience.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Guest");
+                    b.Navigation("Reservation");
 
                     b.Navigation("Room");
                 });
 
+            modelBuilder.Entity("GuestExperience.Models.Reservation", b =>
+                {
+                    b.HasOne("GuestExperience.Models.Guest", "Guest")
+                        .WithMany("Reservations")
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guest");
+                });
+
             modelBuilder.Entity("GuestExperience.Models.Guest", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("GuestExperience.Models.Reservation", b =>
                 {
                     b.Navigation("Bookings");
                 });

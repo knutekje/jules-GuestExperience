@@ -5,10 +5,10 @@ namespace GuestExperience.Repositories;
 
 public interface IBookingRepository
 {
-    public Task<IEnumerable<Booking>> GetAllBookings();
-    public Task<Booking> GetBookingById(int id);
-    public Task<Booking> CreateBooking(Booking booking);
-    public Task<Booking> UpdateBooking(Booking booking);
-    public Task DeleteBooking(Booking booking);
-    public Task<IEnumerable<Booking>> GetBookingsForGuest(int guestId);
+    public Task<IEnumerable<Booking>> GetAllBookingsAsync();
+    public Task<Booking> GetBookingByIdAsync(int id);
+    public Task<Booking> CreateBookingAsync(Booking booking);
+    public Task<Booking> UpdateBookingAsync(Booking booking);
+    public Task DeleteBookingAsync(Booking booking);
+    public Task<IEnumerable<Booking>> GetBookingsForGuestAsync(int guestId);
 }
