@@ -18,12 +18,16 @@ public class GuestService : IGuestService
     {
         try
         {
+            if (guest == null)
+            {
+                throw new ServiceException("Invalid guest data");
+            }
             var returnedGuest = _repository.AddGuestAsync(guest);
             return returnedGuest;
         }
         catch(System.Exception ex)
         {
-            throw new GuestServiceException("AddGuestAsync error", ex);
+            throw new ServiceException($"AddGuestAsync error{ex.Message}");
         }
         
     }
@@ -32,11 +36,15 @@ public class GuestService : IGuestService
         try
         {
             var  response = _repository.GetGuestByIdAsync(guestId);
+            if (response == null)
+            {
+                throw new ServiceException("No guest found");
+            }
             return response;
         }
         catch
         {
-            throw new GuestServiceException($"Unable to get guest with id {guestId}");
+            throw new ServiceException($"Unable to get guest with id {guestId}");
         }
         
     }
@@ -45,30 +53,43 @@ public class GuestService : IGuestService
     {
         try
         {
-            var response = _repository.GetGuests();
+            var response = _repository.GetAllGuestsAsync();
+            if (response == null)
+            {
+                throw new ServiceException("No guest found");
+            }
             return response;
         }
-        catch
+        catch (System.Exception ex)
         {
-            throw new GuestServiceException("Unable to get all guests");
+            throw new ServiceException($"Unable to get all guests{ex.Message}");
         };
     }
 
-    public Task DeleteGuestAsync(int guestId)
+    public Task<bool> DeleteGuestAsync(int guestId)
     {
         try
         {
+            
             var room = _repository.DeleteGuest(guestId);
+            if (room == null)
+            {
+                throw new ServiceException($"No guest found with id:{guestId}");
+            }
             return room;
         }
         catch (System.Exception ex)
         {
-            throw new GuestServiceException("DeleteGuestAsync error", ex);
+            throw new ServiceException($"DeleteGuestAsync error{ex.Message}");
         }
     }
 
     public Task<Guest> UpdateGuestAsync(Guest guest)
     {
+        if (guest == null)
+        {
+            throw new ServiceException("Invalid guest data");
+        }
         try
         {
             var result = _repository.UpdateGuest(guest);
@@ -76,7 +97,7 @@ public class GuestService : IGuestService
         }
         catch
         {
-            throw new GuestServiceException("UpdateGuestAsync error");
+            throw new ServiceException("UpdateGuestAsync error");
         }
     }
 
@@ -84,7 +105,7 @@ public class GuestService : IGuestService
     {
         if (email == null)
         {
-            throw new GuestServiceException("Email is null");
+            throw new ServiceException("Email is missing");
         }
 
         
@@ -94,9 +115,9 @@ public class GuestService : IGuestService
             return result;
 
         }
-        catch(System.Exception e)
+        catch(System.Exception ex)
         {
-            throw new GuestServiceException("Unable to get guest by email", e);
+            throw new ServiceException($"Unable to get guest by email {ex.Message}");
         }
     }
 }

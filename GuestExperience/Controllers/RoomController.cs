@@ -40,11 +40,7 @@ public class RoomController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateRoom([FromBody] RoomDTO roomDto)
     {
-        /*if (room == null)
-        {
-            return BadRequest("Room data is required.");
-        }*/
-        
+   
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);

@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Services;
@@ -19,7 +20,17 @@ public class GuestController: ControllerBase
     [HttpGet]
     public async Task<List<Guest>> GetAllGuestsAsync()
     {
-        return await _guestService.GetAllGuestAsync();
+        try
+        {
+            
+            return await _guestService.GetAllGuestAsync();
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw new ServiceException($"Failed to get guests {ex.Message}.");
+        }
+        
     }
 
     [HttpPost]
@@ -45,9 +56,9 @@ public class GuestController: ControllerBase
 
             return CreatedAtAction(nameof(GetGuestByIdAsync), new { id = addedGuest.Id }, addedGuest);
         }
-        catch(System.Exception e)
+        catch(System.Exception ex)
         {
-            throw  new GuestServiceException("Failed to add guest", e);
+            throw  new SerializationException($"Failed to add guest{ex.Message}");
         }
     }
 
@@ -57,11 +68,15 @@ public class GuestController: ControllerBase
         try
         {
             var loadedGuest = await _guestService.GetGuestAsync(id);
+            if (loadedGuest == null)
+            {
+                throw new SerializationException($"Room with id {id} was not found");
+            }
             return loadedGuest;
         }
         catch(System.Exception ex)
         {
-            throw new GuestServiceException("Failed to get guest", ex);
+            throw new SerializationException("Failed to get guest", ex);
         }
     }
 
