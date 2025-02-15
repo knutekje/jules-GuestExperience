@@ -25,17 +25,7 @@ public class BookingServiceTest
                 Id = 2,
                 CheckIn = DateTime.Today,
                 CheckOut = DateTime.Today.AddDays(3),
-                /*GuestId = 3,
-                Guest = new Guest
-                {
-                    
-                    Id = 1,
-                    Nationality = "Nationality",
-                    FirstName = "First",
-                    LastName = "Last",
-                    Email = "email@email.com",
-                    Address = "Address",
-                },*/
+          
                 RoomId = 2,
                 Room = new Room
                 {
@@ -53,7 +43,7 @@ public class BookingServiceTest
                 Id = 1,
                 CheckIn = DateTime.Now,
                 CheckOut = DateTime.Now.AddDays(7),
-             //   GuestId = 1,
+            
                 RoomId = 1,
                 Room = new Room
                 {
@@ -65,16 +55,8 @@ public class BookingServiceTest
 
 
                 },
-                /*
-                Guest = new Guest
-                {
-                    Id = 1,
-                    Email = "test@test.com",
-                    FirstName = "Test",
-                    LastName = "Test",
-
-                },
-                */
+             
+                
                 
 
 
@@ -82,13 +64,19 @@ public class BookingServiceTest
         };
         _bookingRepository.GetAllBookingsAsync().Returns((testBookings));
         _bookingRepository
-            .DeleteBookingAsync(Arg.Any<Booking>())
-            .Returns(Task.CompletedTask)
-            .AndDoes(callInfo =>
+            .DeleteBookingAsync(Arg.Any<int>())
+            .Returns(callInfo =>
             {
-                var bookingToDelete = callInfo.Arg<Booking>();
-                testBookings.Remove(bookingToDelete);
+                var bookingId = callInfo.Arg<int>();
+                var bookingToDelete = testBookings.FirstOrDefault(b => b.Id == bookingId);
+                if (bookingToDelete != null)
+                {
+                    testBookings.Remove(bookingToDelete);
+                    return true;
+                }
+                return false;
             });
+
         _bookingService = new BookingService(_bookingRepository);
         _bookingRepository
             .GetBookingByIdAsync(Arg.Any<int>())!
@@ -98,24 +86,33 @@ public class BookingServiceTest
                     var passedId = callInfo.Arg<int>();
                     return testBookings.FirstOrDefault(x => x.Id == passedId);
                 });
+        _bookingRepository
+            .CreateBookingAsync(Arg.Any<Booking>())
+            .Returns(callInfo =>
+            {
+                var booking = callInfo.Arg<Booking>();
+                booking.Id = 1; 
+                return Task.FromResult(booking);
+            });
     }
 
     [Fact]
-    public async Task Create_Booking()
+    public async Task Create_Booking_AssignsNewId()
     {
         Booking bookingToCreate = new Booking
         {
-            Id = 0,
-            CheckIn = default,
-            CheckOut = default,
-            //GuestId = 0,
-           // Guest = null,
-            RoomId = 0,
-            Room = null
+            Id = 0, 
+            CheckIn = DateTime.UtcNow,
+            CheckOut = DateTime.UtcNow.AddDays(1),
+            RoomId = 1,
+            Room = null 
         };
-        var result = _bookingService.CreateBookingAsync(bookingToCreate);
-        Assert.Equal(bookingToCreate.Id, result.Result.Id);
+
+        Booking result = await _bookingService.CreateBookingAsync(bookingToCreate);
+
+        Assert.NotEqual(0, result.Id);
     }
+
     
     [Fact]
     public async Task Update_Booking()
@@ -125,8 +122,8 @@ public class BookingServiceTest
             Id = 2,
             CheckIn = default,
             CheckOut = default,
-           // GuestId = 4,
-            //Guest = null,
+           
+           
             RoomId = 0,
             Room = null
         };
@@ -136,19 +133,19 @@ public class BookingServiceTest
             Id = 2,
             CheckIn = default,
             CheckOut = default,
-            //GuestId = 2,
-            //Guest = null,
+      
+      
             RoomId = 0,
             Room = null
         };
         
         var result = _bookingService.UpdateBookingAsync(bookingToUpdate);
-       // Assert.Equal(bookingToUpdate.GuestId, result.Result.GuestId);
+      
     }
     [Fact]
     public async Task Delete_Booking(){
        
-        await _bookingService.DeleteBookingAsync(testBookings[0]);
+         _bookingService.DeleteBookingAsync(testBookings[0].Id);
         var result = await _bookingService.GetAllBookingsAsync(); 
         Assert.Single(result);
         
@@ -166,10 +163,6 @@ public class BookingServiceTest
         var result = await _bookingService.GetAllBookingsAsync();
         Assert.Equal(2, result.Count());
     }
-    /*[Fact]
-    public async Task Get_Bookings_By_UserId(){
-        throw new NotImplementedException();
-        
-    }*/
+
     
 }

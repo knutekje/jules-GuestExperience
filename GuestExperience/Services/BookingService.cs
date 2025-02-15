@@ -1,3 +1,4 @@
+using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Repositories;
 
@@ -9,47 +10,67 @@ public class BookingService : IBookingService
         _bookingRepository = bookingRepository;
     }
 
-    public Task<Booking> CreateBookingAsync(Booking booking)
+    public async Task<Booking> CreateBookingAsync(Booking booking)
     {
+        if (booking == null)
+        {
+            throw new ServiceException("Booking data is invalid");
+        }
         try
         {
-            ArgumentNullException.ThrowIfNull(booking);
-            _bookingRepository.CreateBookingAsync(booking);
-            return Task.FromResult(booking);
+            return await _bookingRepository.CreateBookingAsync(booking);
+            
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            throw;
+            throw new ServiceException($"Error while creating booking {ex.Message}");
         }
 
     }
-
-    public Task<Booking> UpdateBookingAsync(Booking booking)
+//TODO from here
+    public async Task<Booking> UpdateBookingAsync(Booking booking)
     {
+        if (booking == null)
+        {
+            throw new ServiceException("Booking update data is invalid");
+        }
         try
         {
-            ArgumentNullException.ThrowIfNull(booking);
-            _bookingRepository.UpdateBookingAsync(booking);
-            return Task.FromResult(booking);
+            var result = await _bookingRepository.UpdateBookingAsync(booking);
+            if (result == null)
+            {
+                throw new ServiceException($"Error while updating booking {booking.Id}");
+            }
+            return result;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            throw new AbandonedMutexException();
+            throw new ServiceException($"Error while updating booking data{ex.Message}");
         }
     }
 
-    public Task DeleteBookingAsync(Booking booking)
+    public bool DeleteBookingAsync(int bookingId)
     {
+        if (bookingId == null)
+        {
+            throw new ServiceException("Booking data is invalid");
+        }
+
         try
         {
             
-            _bookingRepository.DeleteBookingAsync(booking);
-            return Task.CompletedTask;
+            var result = _bookingRepository.DeleteBookingAsync(bookingId);
+            if (result == null)
+            {
+                throw new ServiceException($"Error while deleting booking {bookingId}");
+            }
+            
+            return true;            
         }
         catch (Exception e)
         {
             
-            throw new AbandonedMutexException();
+            throw new ServiceException($"Error while deleting booking data {e.Message}");
 
         }
     }
@@ -58,30 +79,37 @@ public class BookingService : IBookingService
     {
         try
         {
-         return  await  _bookingRepository.GetAllBookingsAsync();
+            var result = await _bookingRepository.GetAllBookingsAsync();
+            if (result == null)
+            {
+                throw new ServiceException("No bookings found");
+            }
+            return result;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            throw;
+            throw new ServiceException($"Error while getting all bookings {ex.Message}");
         }
     }
 
     public async Task<Booking> GetBookingById(int id)
     {
+        
         try
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
+            
 
-            return await _bookingRepository.GetBookingByIdAsync(id);
+            var result = await _bookingRepository.GetBookingByIdAsync(id);
+            if (result == null)
+            {
+                throw new ServiceException($"No booking found with id {id}");
+            }
+            return result;
 
         }
-        catch
+        catch( Exception ex)
         {
-            throw new KeyNotFoundException();
+            throw new ServiceException($"Error while getting booking data {ex.Message}");
         }
     }
 }

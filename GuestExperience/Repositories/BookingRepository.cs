@@ -1,4 +1,5 @@
 using GuestExperience.Data;
+using GuestExperience.Exception;
 using GuestExperience.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,16 @@ public class BookingRepository : IBookingRepository
     {
         try
         {
-            return await _context.Bookings.ToListAsync();
+            var result = await _context.Bookings.ToListAsync();
+            if (result == null)
+            {
+                throw new RepositoryException("No bookings found");
+            }
+            return result;
         }
         catch (System.Exception ex)
         {
-            throw new AccessViolationException();
+            throw new RepositoryException($"Error in retrieving bookings{ex.Message}");
         }
         
     }
@@ -34,13 +40,13 @@ public class BookingRepository : IBookingRepository
             var result =_context.Bookings.Find(id);
             if (result == null)
             {
-                throw new KeyNotFoundException();
+                throw new RepositoryException($"No booking with id: {id} found");
             }
             return Task.FromResult(result);
         }
-        catch (System.Exception e)
+        catch (System.Exception ex)
         {
-            throw new AccessViolationException();
+            throw new RepositoryException($"Error in retrieving booking{ex.Message}");
         }
     }
 
@@ -50,15 +56,16 @@ public class BookingRepository : IBookingRepository
         {
             if (booking == null)
             {
-                throw new InputFormatterException();
+                throw new RepositoryException("Booking data is invalid");
             }
+        
             _context.Bookings.Add(booking);
             _context.SaveChanges();
             return Task.FromResult(booking);
         }
         catch (System.Exception ex)
         {
-            throw new AccessViolationException();
+            throw new RepositoryException($"Unable to create booking{ex.Message}");
         }
     }
 
@@ -68,34 +75,36 @@ public class BookingRepository : IBookingRepository
         {
             if (booking == null)
             {
-                throw new InputFormatterException();
+                throw new RepositoryException("Booking data is invalid");
             }
-            _context.Entry(booking).State = EntityState.Modified;
+             
+            _context.Update(booking);
             _context.SaveChanges();
             return Task.FromResult(booking);
+            
         }
-        catch (System.Exception e)
+        catch (System.Exception ex)
         {
-            throw new AccessViolationException();
+            throw new RepositoryException("Error while updating");
         }
     }
 
-    public Task DeleteBookingAsync(Booking booking)
+    public async Task<bool> DeleteBookingAsync(int bookingId)
     {
         try
         {
+            var booking =  _context.Bookings.Find(bookingId);
             if (booking == null)
             {
-                throw new InputFormatterException();
+                return false;
             }
             _context.Bookings.Remove(booking);
             _context.SaveChanges();
-            return Task.FromResult(0);
-    
+            return true;
         }
-        catch (System.Exception e)
+        catch (System.Exception ex)
         {
-            throw new AccessViolationException();
+            throw new RepositoryException($"Error while deleting {ex.Message}");
         }
 
     }

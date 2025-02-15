@@ -54,7 +54,7 @@ public class GuestRepositoryTest
         using var context = GetInMemoryDbContext();
         var repository = new GuestRepository(context);
     
-        await Assert.ThrowsAsync<CreateGuestException>(() => repository.GetGuestByIdAsync(123));
+        await Assert.ThrowsAsync<RepositoryException>(() => repository.GetGuestByIdAsync(123));
     }
 
 
@@ -116,7 +116,7 @@ public class GuestRepositoryTest
         });
     
 
-    var guests = await repository.GetGuests();
+    var guests = await repository.GetAllGuestsAsync();
     Assert.NotNull(guests);
     Assert.Equal(4, guests.Count);
     }

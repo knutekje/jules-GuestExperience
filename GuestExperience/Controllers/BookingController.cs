@@ -1,7 +1,8 @@
 using GuestExperience.Exception;
 using GuestExperience.Models;
-using GuestExperience.Repositories;
 using Microsoft.AspNetCore.Mvc;
+
+namespace GuestExperience.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -22,9 +23,9 @@ public class BookingController : Controller
             return _bookingService.GetAllBookingsAsync();
             
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
-            throw new ControllerException($"Faild to retrieve all booking {ex}");
+            throw new ControllerException($"Failed to retrieve all booking {ex.Message}");
         }
     }
 
@@ -52,7 +53,7 @@ public class BookingController : Controller
             return CreatedAtAction(nameof(GetBookingById), new { id = result.Id }, result);
 
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
             throw new AbandonedMutexException();
         }
@@ -72,16 +73,16 @@ public class BookingController : Controller
     }
     
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteBookingAsync(Booking booking)
+    public async Task<IActionResult> DeleteBookingAsync(int bookingId)
     {
         try
         {
-            var result =  _bookingService.DeleteBookingAsync(booking);
+            var result =  _bookingService.DeleteBookingAsync(bookingId);
             return Ok(result);
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
-         throw new AbandonedMutexException();   
+            throw new AbandonedMutexException();   
         }
     }
 }
