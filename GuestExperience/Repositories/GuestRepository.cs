@@ -13,7 +13,7 @@ public class GuestRepository : IGuestRepository
     {
         _context = context;
     }
-    public async Task<Guest> AddGuestAsync(Guest guest)
+    public async Task<Guest> CreateAsync(Guest guest)
     {
         try
         {
@@ -34,7 +34,7 @@ public class GuestRepository : IGuestRepository
 
   
 
-    public async Task<bool> DeleteGuest(int guestId)
+    public async Task<bool> DeleteAsync(int guestId)
     {   
         
         try
@@ -57,7 +57,7 @@ public class GuestRepository : IGuestRepository
 
     }
 
-    public async Task<Guest> GetGuestByIdAsync(int guestId)
+    public async Task<Guest> GetByIdAsync(int guestId)
     {
         
         try
@@ -77,7 +77,7 @@ public class GuestRepository : IGuestRepository
 
    
 
-    public async Task<List<Guest>> GetAllGuestsAsync()
+    public async Task<IEnumerable<Guest>> GetAllAsync()
     {
         try
         {
@@ -95,7 +95,7 @@ public class GuestRepository : IGuestRepository
         }
     }
 
-    public async Task<Guest> UpdateGuest(Guest guest)
+    public async Task<Guest> UpdateAsync(Guest guest)
     {
         try
         {

@@ -1,5 +1,6 @@
 using GuestExperience.Exception;
 using GuestExperience.Models;
+using GuestExperience.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuestExperience.Controllers;
@@ -8,7 +9,7 @@ namespace GuestExperience.Controllers;
 [Route("[controller]")]
 public class BookingController : Controller
 {
-    private readonly IBookingService _bookingService;
+    private readonly  IBookingService _bookingService;
 
     public BookingController(IBookingService bookingService)
     {
@@ -20,7 +21,7 @@ public class BookingController : Controller
     {
         try
         {
-            return _bookingService.GetAllBookingsAsync();
+            return _bookingService.GetAllAsync();
             
         }
         catch (System.Exception ex)
@@ -36,7 +37,7 @@ public class BookingController : Controller
         {
             if (booking == null)
             {
-                throw new AbandonedMutexException();
+                throw new ControllerException("Booking is null");
             }
 
             if (!ModelState.IsValid)
@@ -44,7 +45,7 @@ public class BookingController : Controller
                 return BadRequest(ModelState);
             }
 
-            var result = await _bookingService.CreateBookingAsync(booking);
+            var result = await _bookingService.CreateAsync(booking);
             if (result == null)
             {
                 return BadRequest("Could not create booking");
@@ -64,7 +65,7 @@ public class BookingController : Controller
     {
         try
         {
-            return  await _bookingService.GetBookingById(id);
+            return  await _bookingService.GetByIdAsync(id);
         }
         catch
         {
@@ -77,12 +78,30 @@ public class BookingController : Controller
     {
         try
         {
-            var result =  _bookingService.DeleteBookingAsync(bookingId);
+            var result =  _bookingService.DeleteAsync(bookingId);
             return Ok(result);
         }
         catch (System.Exception e)
         {
             throw new AbandonedMutexException();   
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateBookingAsync(int bookingId, [FromBody] Booking booking)
+    {
+        try
+        {
+            var result = await _bookingService.UpdateAsync(booking);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
+        }
+        catch (System.Exception ex)
+        {
+            throw new ControllerException($"failed update {ex.Message}");
         }
     }
 }

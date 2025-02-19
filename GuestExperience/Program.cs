@@ -1,5 +1,6 @@
 using GuestExperience.Data;
 using GuestExperience.Exception;
+using GuestExperience.Models;
 using GuestExperience.Repositories;
 using GuestExperience.Services;
 using Microsoft.AspNetCore.Diagnostics;
@@ -23,15 +24,25 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<GuestExperienceDbContext>(options =>
     options.UseSqlite("Data Source=guestexperience.db"));
 
+//Generic Repo
+//builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+//Specific Repo
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IGuestRepository, GuestRepository>();
-builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+//Specific Service
+builder.Services.AddScoped<IRoomService, RoomService>();
+
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRoomService, RoomService>();
-builder.Services.AddScoped<IGuestService, GuestService>();
+//builder.Services.AddScoped<IGuestService, GuestService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();

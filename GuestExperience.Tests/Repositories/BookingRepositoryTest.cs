@@ -39,12 +39,12 @@ namespace GuestExperienceTests.Repositories
 
       
             _bookingRepository
-                .GetAllBookingsAsync()
+                .GetAllAsync()
                 .Returns(Task.FromResult<IEnumerable<Booking>>(_testBookings));
 
       
             _bookingRepository
-                .GetBookingByIdAsync(Arg.Any<int>())
+                .GetByIdAsync(Arg.Any<int>())
                 .Returns(callInfo =>
                 {
                     int id = callInfo.Arg<int>();
@@ -53,7 +53,7 @@ namespace GuestExperienceTests.Repositories
 
            
             _bookingRepository
-                .CreateBookingAsync(Arg.Any<Booking>())
+                .CreateAsync(Arg.Any<Booking>())
                 .Returns(callInfo =>
                 {
                     var booking = callInfo.Arg<Booking>();
@@ -79,7 +79,7 @@ namespace GuestExperienceTests.Repositories
             };
 
            
-            var createdBooking = await _bookingRepository.CreateBookingAsync(newBooking);
+            var createdBooking = await _bookingRepository.CreateAsync(newBooking);
 
            
             Assert.NotEqual(0, createdBooking.Id);
@@ -91,7 +91,7 @@ namespace GuestExperienceTests.Repositories
         public async Task GetBookingByIdAsync_ReturnsBooking_WhenIdExists()
         {
            
-            var booking = await _bookingRepository.GetBookingByIdAsync(1);
+            var booking = await _bookingRepository.GetByIdAsync(1);
 
            
             Assert.NotNull(booking);

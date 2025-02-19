@@ -15,7 +15,7 @@ public class BookingRepository : IBookingRepository
         _context = context;
     }
     
-    public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
+    public async Task<IEnumerable<Booking>> GetAllAsync()
     {
         try
         {
@@ -33,7 +33,7 @@ public class BookingRepository : IBookingRepository
         
     }
 
-    public Task<Booking> GetBookingByIdAsync(int id)
+    public Task<Booking> GetByIdAsync(int id)
     {
         try
         {
@@ -50,7 +50,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public Task<Booking> CreateBookingAsync(Booking booking)
+    public Task<Booking> CreateAsync(Booking booking)
     {
         try
         {
@@ -69,7 +69,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public Task<Booking> UpdateBookingAsync(Booking booking)
+    public Task<Booking> UpdateAsync(Booking booking)
     {
         try
         {
@@ -89,7 +89,7 @@ public class BookingRepository : IBookingRepository
         }
     }
 
-    public async Task<bool> DeleteBookingAsync(int bookingId)
+    public async Task<bool> DeleteAsync(int bookingId)
     {
         try
         {

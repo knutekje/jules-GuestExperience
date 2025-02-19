@@ -28,7 +28,7 @@ public class RoomController : ControllerBase
     {
         try
         {
-            return await _roomService.GetAllRoomsAsync();
+            return await _roomService.GetAllAsync();
         }
         catch (System.Exception ex)
         {
@@ -49,7 +49,7 @@ public class RoomController : ControllerBase
         try
         {
             var room = _mapper.Map<Room>(roomDto);
-            var createdRoom = await _roomService.CreateRoomAsync(room);
+            var createdRoom = await _roomService.CreateAsync(room);
 
             var createdRoomDto = _mapper.Map<RoomDTO>(createdRoom);
             return CreatedAtAction(nameof(GetRoomById), new { id = createdRoom.Id }, createdRoomDto);
@@ -72,7 +72,7 @@ public class RoomController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetRoomById(int id)
     {
-        var room = await _roomService.GetRoomById(id);
+        var room = await _roomService.GetByIdAsync(id);
         if (room == null)
         {
             return NotFound();
@@ -85,7 +85,7 @@ public class RoomController : ControllerBase
     {
         try
         {
-            await _roomService.UpdateRoomAsync(room);
+            await _roomService.UpdateAsync(room);
             return NoContent();
         }
         catch (System.Exception ex)
@@ -99,7 +99,7 @@ public class RoomController : ControllerBase
     {
         try
         {
-            var result =  await _roomService.DeleteRoom(id);
+            var result =  await _roomService.DeleteAsync(id);
             if (!result)
             {
                 return NotFound();

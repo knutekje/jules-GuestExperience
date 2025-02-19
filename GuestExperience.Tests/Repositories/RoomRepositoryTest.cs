@@ -40,13 +40,13 @@ namespace GuestExperience.Tests.Repositories
                 
             };
 
-            var addedRoom = await repository.AddRoomAsync(room);
+            var addedRoom = await repository.CreateAsync(room);
 
             Assert.NotNull(addedRoom);
             Assert.NotEqual(0, addedRoom.Id); 
             Assert.Equal(101, addedRoom.RoomNumber);
 
-            var retrievedRoom = await repository.GetRoomByIdAsync(addedRoom.Id);
+            var retrievedRoom = await repository.GetByIdAsync(addedRoom.Id);
             Assert.NotNull(retrievedRoom);
             Assert.Equal(101, retrievedRoom.RoomNumber);
             Assert.Equal(2, retrievedRoom.Capacity);

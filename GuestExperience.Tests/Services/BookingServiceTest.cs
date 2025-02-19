@@ -1,5 +1,6 @@
 using GuestExperience.Models;
 using GuestExperience.Repositories;
+using GuestExperience.Services;
 using Moq;
 using NSubstitute;
 
@@ -18,14 +19,14 @@ public class BookingServiceTest
     {
         _bookingRepository = Substitute.For<IBookingRepository>();
         
-        testBookings = new List<Booking>
-        {
+        testBookings =
+        [
             new Booking
             {
                 Id = 2,
                 CheckIn = DateTime.Today,
                 CheckOut = DateTime.Today.AddDays(3),
-          
+
                 RoomId = 2,
                 Room = new Room
                 {
@@ -36,14 +37,15 @@ public class BookingServiceTest
                     Capacity = 2,
                     Status = RoomStatus.Clean
                 }
-                
+
             },
+
             new Booking
             {
                 Id = 1,
                 CheckIn = DateTime.Now,
                 CheckOut = DateTime.Now.AddDays(7),
-            
+
                 RoomId = 1,
                 Room = new Room
                 {
@@ -55,16 +57,16 @@ public class BookingServiceTest
 
 
                 },
-             
-                
-                
+
+
+
 
 
             }
-        };
-        _bookingRepository.GetAllBookingsAsync().Returns((testBookings));
+        ];
+        _bookingRepository.GetAllAsync().Returns((testBookings));
         _bookingRepository
-            .DeleteBookingAsync(Arg.Any<int>())
+            .DeleteAsync(Arg.Any<int>())
             .Returns(callInfo =>
             {
                 var bookingId = callInfo.Arg<int>();
@@ -79,7 +81,7 @@ public class BookingServiceTest
 
         _bookingService = new BookingService(_bookingRepository);
         _bookingRepository
-            .GetBookingByIdAsync(Arg.Any<int>())!
+            .GetByIdAsync(Arg.Any<int>())!
             .Returns(
                 callInfo =>
                 {
@@ -87,7 +89,7 @@ public class BookingServiceTest
                     return testBookings.FirstOrDefault(x => x.Id == passedId);
                 });
         _bookingRepository
-            .CreateBookingAsync(Arg.Any<Booking>())
+            .CreateAsync(Arg.Any<Booking>())
             .Returns(callInfo =>
             {
                 var booking = callInfo.Arg<Booking>();
@@ -108,7 +110,7 @@ public class BookingServiceTest
             Room = null 
         };
 
-        Booking result = await _bookingService.CreateBookingAsync(bookingToCreate);
+        var result = await _bookingService.CreateAsync(bookingToCreate);
 
         Assert.NotEqual(0, result.Id);
     }
@@ -127,7 +129,7 @@ public class BookingServiceTest
             RoomId = 0,
             Room = null
         };
-        await _bookingService.CreateBookingAsync(bookingToCreate);
+        await _bookingService.CreateAsync(bookingToCreate);
         Booking bookingToUpdate = new Booking
         {
             Id = 2,
@@ -139,14 +141,14 @@ public class BookingServiceTest
             Room = null
         };
         
-        var result = _bookingService.UpdateBookingAsync(bookingToUpdate);
+        var result = _bookingService.UpdateAsync(bookingToUpdate);
       
     }
     [Fact]
     public async Task Delete_Booking(){
        
-         _bookingService.DeleteBookingAsync(testBookings[0].Id);
-        var result = await _bookingService.GetAllBookingsAsync(); 
+         await _bookingService.DeleteAsync(testBookings[0].Id);
+        var result = await _bookingService.GetAllAsync(); 
         Assert.Single(result);
         
     }
@@ -154,13 +156,13 @@ public class BookingServiceTest
     public async Task Get_Booking()
     {
         int passedId = 2;
-        Booking returnedBooking = await _bookingService.GetBookingById(passedId);        
+        Booking returnedBooking = await _bookingService.GetByIdAsync(passedId);        
         Assert.Equal(passedId, returnedBooking.Id);
     }
     [Fact]
     public async Task Get_Bookings()
     {
-        var result = await _bookingService.GetAllBookingsAsync();
+        var result = await _bookingService.GetAllAsync();
         Assert.Equal(2, result.Count());
     }
 

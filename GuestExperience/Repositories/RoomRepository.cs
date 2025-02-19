@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GuestExperience.Repositories;
 
-public class RoomRepository : IRoomRepository
+public class RoomRepository :  IRoomRepository
 {
     private readonly GuestExperienceDbContext _context; 
     private readonly ILogger<RoomRepository> _logger;
@@ -17,7 +17,7 @@ public class RoomRepository : IRoomRepository
         _logger = logger;
     }
 
-    public async Task<List<Room>> GetAllRoomsAsync()
+    public async Task<IEnumerable<Room>> GetAllAsync()
     {
         try
         {
@@ -32,7 +32,7 @@ public class RoomRepository : IRoomRepository
     
     
     
-    public async Task<Room> GetRoomByIdAsync(int id){
+    public async Task<Room> GetByIdAsync(int id){
         if (id == 0)
         {
             throw new RepositoryException("No id provided");
@@ -55,7 +55,7 @@ public class RoomRepository : IRoomRepository
         
     }
     
-    public async Task<Room> AddRoomAsync(Room room){
+    public async Task<Room> CreateAsync(Room room){
         if (room == null)
         {
             throw new RoomCreateFailedException("Room is null"); 
@@ -73,7 +73,7 @@ public class RoomRepository : IRoomRepository
         return room;
         }
 
-    public async Task<Room> UpdateRoomAsync(Room room)
+    public async Task<Room> UpdateAsync(Room room)
     {
         try
         {
@@ -84,12 +84,11 @@ public class RoomRepository : IRoomRepository
         }
         catch(System.Exception ex)
         {
-            //_logger.LogError($"Error updating room: {ex.Message}");
             throw new RepositoryException($"Unable to create room {ex}");
         }
     }
 
-    public async Task<bool> DeleteRoomAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         try
         {
@@ -119,7 +118,9 @@ public class RoomRepository : IRoomRepository
         return result;
     }
 
-    public async Task<List<Room>> GetRoomsByStatus(RoomStatus status)
+ 
+
+    public async Task<List<Room>> GetRoomsByRoomStatus(RoomStatus status)
     {
         if (_context.Rooms == null)
         {
@@ -138,4 +139,8 @@ public class RoomRepository : IRoomRepository
         var result = await _context.Rooms.Where(room => room.Floor == floor).ToListAsync();
         return result;
     }
+
+ 
+
+ 
 }

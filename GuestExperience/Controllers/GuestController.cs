@@ -18,12 +18,12 @@ public class GuestController: ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<Guest>> GetAllGuestsAsync()
+    public async Task<IEnumerable<Guest>> GetAllGuestsAsync()
     {
         try
         {
             
-            return await _guestService.GetAllGuestAsync();
+            return await _guestService.GetAllAsync();
         }
         catch (System.Exception ex)
         {
@@ -48,7 +48,7 @@ public class GuestController: ControllerBase
 
         try
         {
-            var addedGuest = await _guestService.AddGuestAsync(guest);
+            var addedGuest = await _guestService.CreateAsync(guest);
             if (addedGuest == null)
             {
                 return StatusCode(500, "Failed to add guest");
@@ -67,7 +67,7 @@ public class GuestController: ControllerBase
     {
         try
         {
-            var loadedGuest = await _guestService.GetGuestAsync(id);
+            var loadedGuest = await _guestService.GetByIdAsync(id);
             if (loadedGuest == null)
             {
                 throw new SerializationException($"Room with id {id} was not found");
@@ -81,7 +81,7 @@ public class GuestController: ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateGuest([FromBody] Guest guest)
+    public async Task<IActionResult> UpdateAsync([FromBody] Guest guest)
     {
         if (guest == null)
         {
@@ -90,7 +90,7 @@ public class GuestController: ControllerBase
         try
         {
             
-            var result = await _guestService.UpdateGuestAsync(guest);
+            var result = await _guestService.UpdateAsync(guest);
             return Ok(result);
         }
         catch(System.Exception ex)
@@ -104,7 +104,7 @@ public class GuestController: ControllerBase
     {
         try
         { 
-            var result = await _guestService.GetGuestByEmailAsync(email);
+            var result = await _guestService.GetGuestByEmail(email);
             return Ok(result);
 
         }
@@ -112,6 +112,20 @@ public class GuestController: ControllerBase
         catch(System.Exception e)
         {
             throw new GuestServiceException("Failed to get guest", e);
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteGuest([FromBody] int guestId)
+    {
+        try
+        {
+            await _guestService.DeleteAsync(guestId);
+            return Ok();/**/
+        }
+        catch (System.Exception ex)
+        {
+                throw new ControllerException($"Exception while trying to delete guest {ex.Message}");
         }
     }
 

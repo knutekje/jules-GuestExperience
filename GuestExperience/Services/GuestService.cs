@@ -14,7 +14,7 @@ public class GuestService : IGuestService
         _repository = repository;
     }
     
-    public Task<Guest> AddGuestAsync(Guest guest)
+    public Task<Guest> CreateAsync(Guest guest)
     {
         try
         {
@@ -22,7 +22,7 @@ public class GuestService : IGuestService
             {
                 throw new ServiceException("Invalid guest data");
             }
-            var returnedGuest = _repository.AddGuestAsync(guest);
+            var returnedGuest = _repository.CreateAsync(guest);
             return returnedGuest;
         }
         catch(System.Exception ex)
@@ -31,11 +31,11 @@ public class GuestService : IGuestService
         }
         
     }
-    public Task<Guest> GetGuestAsync(int guestId)
+    public Task<Guest> GetByIdAsync(int guestId)
     {
         try
         {
-            var  response = _repository.GetGuestByIdAsync(guestId);
+            var  response = _repository.GetByIdAsync(guestId);
             if (response == null)
             {
                 throw new ServiceException("No guest found");
@@ -49,11 +49,11 @@ public class GuestService : IGuestService
         
     }
 
-    public Task<List<Guest>> GetAllGuestAsync()
+    public Task<IEnumerable<Guest>> GetAllAsync()
     {
         try
         {
-            var response = _repository.GetAllGuestsAsync();
+            var response = _repository.GetAllAsync();
             if (response == null)
             {
                 throw new ServiceException("No guest found");
@@ -66,12 +66,12 @@ public class GuestService : IGuestService
         };
     }
 
-    public Task<bool> DeleteGuestAsync(int guestId)
+    public Task<bool> DeleteAsync(int guestId)
     {
         try
         {
             
-            var room = _repository.DeleteGuest(guestId);
+            var room = _repository.DeleteAsync(guestId);
             if (room == null)
             {
                 throw new ServiceException($"No guest found with id:{guestId}");
@@ -84,7 +84,7 @@ public class GuestService : IGuestService
         }
     }
 
-    public Task<Guest> UpdateGuestAsync(Guest guest)
+    public Task<Guest> UpdateAsync(Guest guest)
     {
         if (guest == null)
         {
@@ -92,7 +92,7 @@ public class GuestService : IGuestService
         }
         try
         {
-            var result = _repository.UpdateGuest(guest);
+            var result = _repository.UpdateAsync(guest);
             return result;
         }
         catch
@@ -101,7 +101,7 @@ public class GuestService : IGuestService
         }
     }
 
-    public Task<Guest> GetGuestByEmailAsync(string email)
+    public Task<Guest> GetGuestByEmail(string email)
     {
         if (email == null)
         {

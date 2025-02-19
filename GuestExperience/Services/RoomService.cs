@@ -14,26 +14,26 @@ public class RoomService : IRoomService
     }
     
     
-    public async Task<Room> CreateRoomAsync(Room room)
+    public async Task<Room> CreateAsync(Room room)
     {
         if (room == null)
         {
             throw new ServiceException("Missing room data");
         }
-        var existingRooms = await _roomRepository.GetAllRoomsAsync();
+        var existingRooms = await _roomRepository.GetAllAsync();
         if (existingRooms.Any(r => r.RoomNumber == room.RoomNumber))
         {
             throw new ServiceException("A room with this number already exists.");
         }
 
-        return await _roomRepository.AddRoomAsync(room);
+        return await _roomRepository.CreateAsync(room);
     }
 
     
     
     
 
-    public async Task<Room> UpdateRoomAsync(Room room)
+    public async Task<Room> UpdateAsync(Room room)
     {
         if (room == null)
         {
@@ -42,12 +42,30 @@ public class RoomService : IRoomService
         }
         try
         {
-            var succeRoom = await _roomRepository.UpdateRoomAsync(room);
+            var succeRoom = await _roomRepository.UpdateAsync(room);
             return succeRoom;
         }
         catch (System.Exception ex)
         {
            throw new ServiceException($"Failed to update room data {ex}");
+        }
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        try
+        {
+            var  result = await _roomRepository.DeleteAsync(id);
+            if (!result)
+            {
+                throw new ServiceException($"Failed to delete room data {id}");
+            }
+            return result;
+
+        }
+        catch (System.Exception ex)
+        {
+            throw new ServiceException($"Failed to delete room data {ex}");
         }
     }
 
@@ -59,7 +77,7 @@ public class RoomService : IRoomService
         }
         try
         {
-            return await _roomRepository.DeleteRoomAsync(id);
+            return await _roomRepository.DeleteAsync(id);
         }
         catch (System.Exception ex)
         {
@@ -69,17 +87,17 @@ public class RoomService : IRoomService
         
     }
 
-    public async Task<List<Room>> GetAllRoomsAsync()
+    public async Task<IEnumerable<Room>> GetAllAsync()
     {
         if (_roomRepository == null)
         {
             throw new ServiceException("No room data");
         }
-        return await _roomRepository.GetAllRoomsAsync();
+        return await _roomRepository.GetAllAsync();
         
     }
 
-    public async Task<Room> GetRoomById(int id)
+    public async Task<Room> GetByIdAsync(int id)
     {
         if (id == null)
         {
@@ -87,7 +105,7 @@ public class RoomService : IRoomService
         }
         try
         {
-            var foundRoom = await _roomRepository.GetRoomByIdAsync(id);
+            var foundRoom = await _roomRepository.GetByIdAsync(id);
             if (foundRoom == null)
             {
                 throw new ServiceException($"Room with id:{id} does not exist");
@@ -141,6 +159,11 @@ public class RoomService : IRoomService
         }
     }
 
+    public Task<List<Room>> GetRoomsByRoomStatus(RoomStatus roomType)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<Room>> GetRoomsByStatus(RoomStatus status)
     {
         if (status == null)
@@ -150,7 +173,7 @@ public class RoomService : IRoomService
 
         try
         {
-            var foundRooms = await _roomRepository.GetRoomsByStatus(status);
+            var foundRooms = await _roomRepository.GetRoomsByRoomStatus(status);
             if (foundRooms == null)
             {
                 throw new RoomNotFoundException("No rooms found");

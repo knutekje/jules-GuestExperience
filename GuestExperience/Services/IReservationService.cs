@@ -2,7 +2,7 @@ using GuestExperience.Models;
 
 namespace GuestExperience.Services;
 
-public interface IBookingService : IRepository<Booking>
+public interface IReservationService : IService<Reservation>
 {
     
 }

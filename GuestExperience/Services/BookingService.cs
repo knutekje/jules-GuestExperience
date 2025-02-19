@@ -1,6 +1,7 @@
 using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Repositories;
+using GuestExperience.Services;
 
 public class BookingService : IBookingService
 {
@@ -10,7 +11,7 @@ public class BookingService : IBookingService
         _bookingRepository = bookingRepository;
     }
 
-    public async Task<Booking> CreateBookingAsync(Booking booking)
+    public async Task<Booking> CreateAsync(Booking booking)
     {
         if (booking == null)
         {
@@ -18,7 +19,7 @@ public class BookingService : IBookingService
         }
         try
         {
-            return await _bookingRepository.CreateBookingAsync(booking);
+            return await _bookingRepository.CreateAsync(booking);
             
         }
         catch (Exception ex)
@@ -28,7 +29,7 @@ public class BookingService : IBookingService
 
     }
 //TODO from here
-    public async Task<Booking> UpdateBookingAsync(Booking booking)
+    public async Task<Booking> UpdateAsync(Booking booking)
     {
         if (booking == null)
         {
@@ -36,7 +37,7 @@ public class BookingService : IBookingService
         }
         try
         {
-            var result = await _bookingRepository.UpdateBookingAsync(booking);
+            var result = await _bookingRepository.UpdateAsync(booking);
             if (result == null)
             {
                 throw new ServiceException($"Error while updating booking {booking.Id}");
@@ -49,7 +50,7 @@ public class BookingService : IBookingService
         }
     }
 
-    public bool DeleteBookingAsync(int bookingId)
+    public async Task<bool> DeleteAsync(int bookingId)
     {
         if (bookingId == null)
         {
@@ -59,7 +60,7 @@ public class BookingService : IBookingService
         try
         {
             
-            var result = _bookingRepository.DeleteBookingAsync(bookingId);
+            var result = _bookingRepository.DeleteAsync(bookingId);
             if (result == null)
             {
                 throw new ServiceException($"Error while deleting booking {bookingId}");
@@ -75,11 +76,11 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
+    public async Task<IEnumerable<Booking>> GetAllAsync()
     {
         try
         {
-            var result = await _bookingRepository.GetAllBookingsAsync();
+            var result = await _bookingRepository.GetAllAsync();
             if (result == null)
             {
                 throw new ServiceException("No bookings found");
@@ -92,14 +93,14 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<Booking> GetBookingById(int id)
+    public async Task<Booking> GetByIdAsync(int id)
     {
         
         try
         {
             
 
-            var result = await _bookingRepository.GetBookingByIdAsync(id);
+            var result = await _bookingRepository.GetByIdAsync(id);
             if (result == null)
             {
                 throw new ServiceException($"No booking found with id {id}");

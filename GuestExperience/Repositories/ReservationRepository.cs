@@ -1,4 +1,5 @@
 using GuestExperience.Data;
+using GuestExperience.Exception;
 using GuestExperience.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -14,14 +15,15 @@ public class ReservationRepository : IReservationRepository
     {
         _context = context;
     }
-    public async Task<Reservation> CreateReservationAsync(Reservation reservation)
+    public async Task<Reservation> CreateAsync(Reservation reservation)
     {
+        if (reservation == null)
+        {
+            throw new RepositoryException("Reservation cannot incomplete or empty");
+        }
         try
         {
-            if (reservation == null)
-            {
-                throw new ArgumentNullException(nameof(reservation));
-            }
+            
 
             await _context.Reservations.AddAsync(reservation);
             await _context.SaveChangesAsync();
@@ -29,74 +31,86 @@ public class ReservationRepository : IReservationRepository
         }
         catch
         {
-            throw new AbandonedMutexException();
+            throw new RepositoryException("Error while creating reservation");
         }
     }
 
-    public async Task<Reservation> GetReservationAsync(int id)
+    public async Task<Reservation> GetByIdAsync(int id)
     {
+       
         try
         {
-            if (id <= 0)
+          
+            var result = await _context.Reservations.FindAsync(id);
+            if (result == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new RepositoryException("Rservation not found");
+                
             }
-            return await _context.Reservations.FindAsync(id);
+
+            return result;
         }
         
-        catch
+        catch (System.Exception ex)
         {
-            throw new AbandonedMutexException();
+            throw new RepositoryException($"Error while getting reservation {ex.Message}");
         }
     }
 
-    public async Task<List<Reservation>> GetAllReservationsAsync()
+    public async Task<IEnumerable<Reservation>> GetAllAsync()
     {
         try
         {
-            return await _context.Reservations.ToListAsync();
+            var result = await _context.Reservations.ToListAsync();
+            if (result == null)
+            {
+                throw new RepositoryException("Reservations not found");
+            }
+            return result;
         }
-        catch
+        catch (System.Exception ex)
         {
-            throw new AbandonedMutexException();
+            throw new RepositoryException($"Error while getting reservations {ex.Message}");
+    
         }
     }
 
-    public async Task<Reservation> DeleteReservationAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         try
         {
-            Reservation toBeRemoved = await _context.Reservations.FindAsync(id);
+            var toBeRemoved = await _context.Reservations.FindAsync(id);
             if (toBeRemoved == null)
             {
-                throw new InvalidOperationException($"Reservation with id {id} was not found");
+                throw new RepositoryException($"Reservation with id {id} was not found");
             }
             _context.Reservations.Remove(toBeRemoved);
             await _context.SaveChangesAsync();
-            return toBeRemoved;
+            return false;
         }
         catch 
         {
-          throw new AbandonedMutexException();
+          throw new RepositoryException("Error while deleting reservation");
         }
     }
 
-    public async Task<Reservation> UpdateReservationAsync(Reservation reservation)
+    public async Task<Reservation> UpdateAsync(Reservation reservation)
     {
+        if (reservation == null)
+        {
+            throw new RepositoryException($"Reservation cannot incomplete or empty");
+        }
         try
         {
-            if (reservation == null)
-            {
-                throw new ArgumentNullException(nameof(reservation));
-            }
-            _context.Entry(reservation).State = EntityState.Modified;
+         
+            //_context.Entry(reservation).State = EntityState.Modified;
             _context.Reservations.Update(reservation);
             await _context.SaveChangesAsync();
             return reservation;
         }
         catch 
         {
-          throw new AbandonedMutexException();
+          throw new RepositoryException("Error while updating reservation");
         }
     }
 }
