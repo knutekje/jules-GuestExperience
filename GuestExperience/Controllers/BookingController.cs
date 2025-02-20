@@ -1,3 +1,5 @@
+using AutoMapper;
+using GuestExperience.DTOs;
 using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Services;
@@ -10,9 +12,11 @@ namespace GuestExperience.Controllers;
 public class BookingController : Controller
 {
     private readonly  IBookingService _bookingService;
+    private readonly IMapper _mapper;
 
-    public BookingController(IBookingService bookingService)
+    public BookingController(IBookingService bookingService, IMapper mapper)
     {
+        _mapper = mapper;
         _bookingService = bookingService;
     }
 
@@ -31,11 +35,10 @@ public class BookingController : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateBookingAsync([FromBody] Booking booking)
+    public async Task<ActionResult> CreateBookingAsync([FromBody] BookingDTO bookingDto)
     {
-        try
-        {
-            if (booking == null)
+        
+            if (bookingDto == null)
             {
                 throw new ControllerException("Booking is null");
             }
@@ -45,19 +48,25 @@ public class BookingController : Controller
                 return BadRequest(ModelState);
             }
 
-            var result = await _bookingService.CreateAsync(booking);
-            if (result == null)
+            try
             {
-                return BadRequest("Could not create booking");
+                var room = await _bookingService.CreateAsync(_mapper.Map<Booking>(bookingDto));
+                if (room == null)
+                {
+                    return BadRequest("Could not create booking");
+                }
+                
+                return Ok(room);            
             }
+            catch (System.Exception ex)
+            {
+                
+                throw new ControllerException($"Unable to create booking: {ex.Message}");
+            }
+            
 
-            return CreatedAtAction(nameof(GetBookingById), new { id = result.Id }, result);
-
-        }
-        catch (System.Exception e)
-        {
-            throw new AbandonedMutexException();
-        }
+        
+   
     }
     
     [HttpGet("{id}")]

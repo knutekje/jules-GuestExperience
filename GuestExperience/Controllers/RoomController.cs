@@ -6,6 +6,7 @@ using GuestExperience.Models;
 using GuestExperience.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace GuestExperience.Controllers;
 
@@ -110,6 +111,63 @@ public class RoomController : ControllerBase
         {
             
             throw new  ControllerException($"Failed to delete room {ex}");
+        }
+    }
+
+    [HttpGet("status/{status}")]
+    public async Task<IActionResult> GetRoomStatus(RoomStatus roomstatus)
+    {
+        try
+        {
+            var result = await _roomService.GetRoomsByRoomStatus(roomstatus);
+            if (result == null)
+            {
+                throw new ControllerException($"No room with status {roomstatus} found");
+            }
+            return Ok(result);
+        }
+        catch (System.Exception ex)
+        {
+            throw new  ControllerException($"Failed to get room status {ex}");
+            
+        }
+    }
+
+    [HttpGet("floor/{floor}")]
+    public async Task<IActionResult> GetRoomByFloor(int floor)
+    {
+        try
+        {
+            var result = await _roomService.GetRoomsByFloor(floor);
+            if (result == null)
+            {
+                throw new ControllerException($"No room with floor {floor} found");
+            }
+            return Ok(result);
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw new  ControllerException($"Failed to get room by floor {floor}");
+        }
+    }
+
+    [HttpGet("type/{roomType}")]
+    public async Task<IActionResult> GetRoomsByRoomType(RoomType roomType)
+    {
+        try
+        {
+            var result = await _roomService.GetRoomsByRoomType(roomType);
+            if (result == null)
+            {
+                throw new ControllerException($"No rooms with room type {roomType} found");
+            }
+            return Ok(result);
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw new ControllerException($"Error while fetching room");
         }
     }
     

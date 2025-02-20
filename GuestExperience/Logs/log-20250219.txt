@@ -134,3 +134,112 @@ SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NO
 2025-02-19 21:27:42.865 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
 2025-02-19 21:27:42.978 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 113.4389ms
 2025-02-19 21:42:18.540 +01:00 [INF] Application is shutting down...
+2025-02-19 21:42:52.993 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-19 21:42:53.062 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-19 21:42:53.126 +01:00 [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-19 20:42:53.0670374+00:00');
+SELECT changes();
+2025-02-19 21:42:53.170 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-19 21:42:53.176 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-19 21:42:53.199 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-19 21:42:53.205 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-19 21:42:53.222 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-19 21:42:53.227 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-19 21:42:53.295 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-19 21:42:53.296 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 21:42:53.296 +01:00 [INF] Hosting environment: Development
+2025-02-19 21:42:53.296 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-19 21:42:59.853 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/ - null null
+2025-02-19 21:42:59.897 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/ - 404 0 null 46.914ms
+2025-02-19 21:42:59.903 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5235/, Response status code: 404
+2025-02-19 21:43:03.691 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-19 21:43:03.748 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 57.1005ms
+2025-02-19 21:43:03.845 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-19 21:43:03.848 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 2.9076ms
+2025-02-19 21:43:04.014 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-19 21:43:04.020 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-19 21:43:04.020 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 200 628 image/png 6.1766ms
+2025-02-19 21:43:04.100 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-19 21:43:04.239 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 138.9414ms
+2025-02-19 22:12:12.931 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-19 22:12:12.996 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-19 22:12:13.036 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-19 21:12:13.0010726+00:00');
+SELECT changes();
+2025-02-19 22:12:13.076 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-19 22:12:13.081 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-19 22:12:13.083 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-19 22:12:13.088 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-19 22:12:13.116 +01:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-19 22:12:13.122 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-19 22:12:13.188 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-19 22:12:13.190 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 22:12:13.190 +01:00 [INF] Hosting environment: Development
+2025-02-19 22:12:13.190 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-19 22:12:22.545 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/ - null null
+2025-02-19 22:12:22.572 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/ - 404 0 null 29.2102ms
+2025-02-19 22:12:22.578 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5235/, Response status code: 404
+2025-02-19 22:12:26.000 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-19 22:12:26.046 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 45.7974ms
+2025-02-19 22:12:26.170 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-19 22:12:26.173 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 2.1244ms
+2025-02-19 22:12:26.427 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-19 22:12:26.434 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-19 22:12:26.437 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 200 628 image/png 9.9657ms
+2025-02-19 22:12:26.516 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-19 22:12:26.634 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 117.4768ms
+2025-02-19 22:12:56.743 +01:00 [INF] Application is shutting down...
+2025-02-19 22:13:04.231 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-19 22:13:04.293 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-19 22:13:04.364 +01:00 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-19 21:13:04.2978575+00:00');
+SELECT changes();
+2025-02-19 22:13:04.407 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-19 22:13:04.411 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-19 22:13:04.413 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-19 22:13:04.418 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-19 22:13:04.444 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-19 22:13:04.451 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-19 22:13:04.514 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-19 22:13:04.515 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 22:13:04.516 +01:00 [INF] Hosting environment: Development
+2025-02-19 22:13:04.516 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-19 22:13:07.511 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-19 22:13:07.563 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 54.4739ms
+2025-02-19 22:13:07.608 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-19 22:13:07.610 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 1.794ms
+2025-02-19 22:13:07.878 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-19 22:13:07.993 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 115.241ms

@@ -1,0 +1,676 @@
+2025-02-20 09:10:16.127 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:10:16.197 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:10:16.256 +01:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:10:16.2024178+00:00');
+SELECT changes();
+2025-02-20 09:10:16.297 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:10:16.301 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:10:16.303 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:10:16.309 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:10:16.337 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:10:16.342 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:10:16.411 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:10:16.412 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:10:16.412 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:10:16.412 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:10:49.733 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/ - null null
+2025-02-20 09:10:49.768 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/ - 404 0 null 35.3012ms
+2025-02-20 09:10:49.773 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5235/, Response status code: 404
+2025-02-20 09:10:49.939 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/favicon.ico - null null
+2025-02-20 09:10:49.942 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/favicon.ico - 404 0 null 2.3428ms
+2025-02-20 09:10:49.942 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5235/favicon.ico, Response status code: 404
+2025-02-20 09:10:53.391 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/ - null null
+2025-02-20 09:10:53.395 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/ - 301 0 null 3.2359ms
+2025-02-20 09:10:53.421 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:10:53.503 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 82.2158ms
+2025-02-20 09:10:53.576 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/swagger-ui.css - null null
+2025-02-20 09:10:53.587 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-02-20 09:10:53.588 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/swagger-ui.css - 499 152035 text/css 12.1413ms
+2025-02-20 09:10:53.653 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:10:53.653 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.css - null null
+2025-02-20 09:10:53.653 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 0.8634ms
+2025-02-20 09:10:53.654 +01:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-02-20 09:10:53.654 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.css - 499 202 text/css 1.0865ms
+2025-02-20 09:10:53.832 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:10:53.832 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:10:53.832 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 0.7582ms
+2025-02-20 09:10:53.939 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:10:54.043 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 104.5212ms
+2025-02-20 09:10:59.453 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Reservation - null null
+2025-02-20 09:10:59.455 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 09:10:59.465 +01:00 [INF] Route matched with {action = "GetReservations", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Reservation]]] GetReservations() on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 09:10:59.470 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience) in 1.1974ms
+2025-02-20 09:10:59.470 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 09:10:59.471 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'GuestExperience.Services.IReservationService' while attempting to activate 'GuestExperience.Controllers.ReservationController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method13(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-20 09:10:59.488 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Reservation - 500 0 null 35.0128ms
+2025-02-20 09:11:53.633 +01:00 [INF] Application is shutting down...
+2025-02-20 09:12:00.343 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:12:00.407 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:12:00.449 +01:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:12:00.4114286+00:00');
+SELECT changes();
+2025-02-20 09:12:00.490 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:12:00.495 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:12:00.496 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:12:00.502 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:12:00.514 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:12:00.519 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:12:00.585 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:12:00.587 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:12:00.587 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:12:00.587 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:12:07.239 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:12:07.303 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 64.9469ms
+2025-02-20 09:12:07.406 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:12:07.408 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 2.4686ms
+2025-02-20 09:12:07.589 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:12:07.697 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 108.6795ms
+2025-02-20 09:12:12.560 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Reservation - null null
+2025-02-20 09:12:12.590 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 09:12:12.603 +01:00 [INF] Route matched with {action = "GetReservations", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Reservation]]] GetReservations() on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 09:12:12.753 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."GuestId"
+FROM "reservation" AS "r"
+2025-02-20 09:12:12.760 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Reservation, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:12:12.778 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience) in 172.4512ms
+2025-02-20 09:12:12.778 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 09:12:12.780 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Reservation - 200 null application/json; charset=utf-8 220.0383ms
+2025-02-20 09:31:02.114 +01:00 [INF] Application is shutting down...
+2025-02-20 09:31:09.014 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:31:09.076 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:31:09.151 +01:00 [INF] Executed DbCommand (70ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:31:09.0812872+00:00');
+SELECT changes();
+2025-02-20 09:31:09.193 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:31:09.198 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:31:09.199 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:31:09.205 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:31:09.217 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:31:09.222 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:31:09.292 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:31:09.294 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:31:09.294 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:31:09.294 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:31:15.279 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:31:15.337 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 60.6834ms
+2025-02-20 09:31:15.398 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:31:15.406 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 7.7562ms
+2025-02-20 09:31:15.598 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:31:15.607 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:31:15.607 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 8.915ms
+2025-02-20 09:31:15.677 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:31:15.797 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 119.2068ms
+2025-02-20 09:31:42.552 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/2 - null null
+2025-02-20 09:31:42.569 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomById (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+2025-02-20 09:31:42.576 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/2 - 500 0 null 24.3986ms
+2025-02-20 09:31:52.037 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/clean?roomstatus=1 - null null
+2025-02-20 09:31:52.038 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomById (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+2025-02-20 09:31:52.039 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/clean?roomstatus=1 - 500 0 null 1.9592ms
+2025-02-20 09:32:01.905 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/1 - null null
+2025-02-20 09:32:01.906 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomById (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+2025-02-20 09:32:01.906 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/1 - 500 0 null 1.378ms
+2025-02-20 09:32:51.535 +01:00 [INF] Application is shutting down...
+2025-02-20 09:32:58.200 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:32:58.266 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:32:58.343 +01:00 [INF] Executed DbCommand (72ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:32:58.270648+00:00');
+SELECT changes();
+2025-02-20 09:32:58.384 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:32:58.389 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:32:58.390 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:32:58.396 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:32:58.430 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:32:58.435 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:32:58.501 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:32:58.502 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:32:58.502 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:32:58.502 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:33:00.175 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:33:00.247 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 75.3764ms
+2025-02-20 09:33:00.300 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:33:00.302 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 7.9492ms
+2025-02-20 09:33:00.474 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:33:00.588 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 113.2ms
+2025-02-20 09:33:11.647 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/floor/2 - null null
+2025-02-20 09:33:11.678 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience)'
+2025-02-20 09:33:11.696 +01:00 [INF] Route matched with {action = "GetRoomByFloor", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomByFloor(Int32) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:33:12.030 +01:00 [INF] Executed DbCommand (29ms) [Parameters=[@__floor_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+WHERE "r"."floor" = @__floor_0
+2025-02-20 09:33:12.037 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:33:12.051 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience) in 352.5183ms
+2025-02-20 09:33:12.051 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomByFloor (GuestExperience)'
+2025-02-20 09:33:12.053 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/floor/2 - 200 null application/json; charset=utf-8 405.9113ms
+2025-02-20 09:33:25.692 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room - null null
+2025-02-20 09:33:25.694 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRooms (GuestExperience)'
+2025-02-20 09:33:25.697 +01:00 [INF] Route matched with {action = "GetRooms", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Room]] GetRooms() on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:33:25.741 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+2025-02-20 09:33:25.788 +01:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:33:25.793 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRooms (GuestExperience) in 95.6192ms
+2025-02-20 09:33:25.793 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRooms (GuestExperience)'
+2025-02-20 09:33:25.793 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room - 200 null application/json; charset=utf-8 101.0522ms
+2025-02-20 09:33:38.726 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/2 - null null
+2025-02-20 09:33:38.728 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+GuestExperience.Controllers.RoomController.GetRoomById (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)
+GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+2025-02-20 09:33:38.733 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/2 - 500 0 null 6.7824ms
+2025-02-20 09:34:21.384 +01:00 [INF] Application is shutting down...
+2025-02-20 09:34:28.349 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:34:28.412 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:34:28.447 +01:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:34:28.4173894+00:00');
+SELECT changes();
+2025-02-20 09:34:28.487 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:34:28.492 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:34:28.494 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:34:28.499 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:34:28.513 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:34:28.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:34:28.583 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:34:28.584 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:34:28.585 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:34:28.585 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:34:28.865 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:34:28.922 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 57.8829ms
+2025-02-20 09:34:28.971 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:34:28.973 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 2.3501ms
+2025-02-20 09:34:29.244 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:34:29.343 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 98.8042ms
+2025-02-20 09:34:44.070 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/type/2 - null null
+2025-02-20 09:34:44.094 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:44.119 +01:00 [INF] Route matched with {action = "GetRoomsByRoomType", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomsByRoomType(GuestExperience.Models.RoomType) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:34:44.419 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__roomType_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+WHERE "r"."room_type" = @__roomType_0
+2025-02-20 09:34:44.426 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:34:44.439 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience) in 317.6248ms
+2025-02-20 09:34:44.440 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:44.442 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/type/2 - 200 null application/json; charset=utf-8 371.9181ms
+2025-02-20 09:34:49.144 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/type/1 - null null
+2025-02-20 09:34:49.146 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:49.146 +01:00 [INF] Route matched with {action = "GetRoomsByRoomType", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomsByRoomType(GuestExperience.Models.RoomType) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:34:49.190 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__roomType_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+WHERE "r"."room_type" = @__roomType_0
+2025-02-20 09:34:49.191 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:34:49.192 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience) in 45.3056ms
+2025-02-20 09:34:49.192 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:49.192 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/type/1 - 200 null application/json; charset=utf-8 48.1515ms
+2025-02-20 09:34:53.025 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/type/0 - null null
+2025-02-20 09:34:53.026 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:53.026 +01:00 [INF] Route matched with {action = "GetRoomsByRoomType", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomsByRoomType(GuestExperience.Models.RoomType) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:34:53.029 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__roomType_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+WHERE "r"."room_type" = @__roomType_0
+2025-02-20 09:34:53.071 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:34:53.074 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience) in 47.668ms
+2025-02-20 09:34:53.074 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomsByRoomType (GuestExperience)'
+2025-02-20 09:34:53.074 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/type/0 - 200 null application/json; charset=utf-8 48.7557ms
+2025-02-20 09:35:37.767 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/status/clean?roomstatus=2 - null null
+2025-02-20 09:35:37.767 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)'
+2025-02-20 09:35:37.772 +01:00 [INF] Route matched with {action = "GetRoomStatus", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomStatus(GuestExperience.Models.RoomStatus) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:35:37.782 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience) in 10.3528ms
+2025-02-20 09:35:37.783 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)'
+2025-02-20 09:35:37.784 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+[Exception in ControllerException..ctor]: Failed to get room status System.NotImplementedException: The method or operation is not implemented.
+   at GuestExperience.Services.RoomService.GetRoomsByRoomStatus(RoomStatus roomType) in /home/knutekje/Documents/jules-GuestExperience/GuestExperience/Services/RoomService.cs:line 164
+   at GuestExperience.Controllers.RoomController.GetRoomStatus(RoomStatus roomstatus) in /home/knutekje/Documents/jules-GuestExperience/GuestExperience/Controllers/RoomController.cs:line 122
+2025-02-20 09:35:37.786 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/status/clean?roomstatus=2 - 500 null null 19.3405ms
+2025-02-20 09:35:47.814 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room/status/Clean?roomstatus=2 - null null
+2025-02-20 09:35:47.814 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)'
+2025-02-20 09:35:47.815 +01:00 [INF] Route matched with {action = "GetRoomStatus", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRoomStatus(GuestExperience.Models.RoomStatus) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 09:35:47.816 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience) in 1.5941ms
+2025-02-20 09:35:47.817 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRoomStatus (GuestExperience)'
+2025-02-20 09:35:47.817 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+[Exception in ControllerException..ctor]: Failed to get room status System.NotImplementedException: The method or operation is not implemented.
+   at GuestExperience.Services.RoomService.GetRoomsByRoomStatus(RoomStatus roomType) in /home/knutekje/Documents/jules-GuestExperience/GuestExperience/Services/RoomService.cs:line 164
+   at GuestExperience.Controllers.RoomController.GetRoomStatus(RoomStatus roomstatus) in /home/knutekje/Documents/jules-GuestExperience/GuestExperience/Controllers/RoomController.cs:line 122
+2025-02-20 09:35:47.818 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room/status/Clean?roomstatus=2 - 500 null null 3.9532ms
+2025-02-20 09:40:47.100 +01:00 [INF] Application is shutting down...
+2025-02-20 09:40:54.742 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:40:54.808 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:40:54.846 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:40:54.8123495+00:00');
+SELECT changes();
+2025-02-20 09:40:54.888 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:40:54.892 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:40:54.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:40:54.899 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:40:54.927 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:40:54.932 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:40:54.997 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:40:54.998 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:40:54.999 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:40:54.999 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:40:59.147 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:40:59.209 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 63.1405ms
+2025-02-20 09:40:59.270 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:40:59.272 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 7.9934ms
+2025-02-20 09:40:59.457 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:40:59.466 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:40:59.466 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 9.0105ms
+2025-02-20 09:40:59.495 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:40:59.609 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 114.04ms
+2025-02-20 09:43:45.075 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:43:45.139 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:43:45.170 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:43:45.1440798+00:00');
+SELECT changes();
+2025-02-20 09:43:45.210 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:43:45.216 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:43:45.218 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:43:45.223 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:43:45.267 +01:00 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:43:45.272 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:43:45.351 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:43:45.353 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:43:45.353 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:43:45.353 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:43:50.656 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:43:50.721 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 65.6407ms
+2025-02-20 09:43:50.772 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:43:50.774 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 1.7286ms
+2025-02-20 09:43:50.915 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:43:50.921 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:43:50.922 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 6.7748ms
+2025-02-20 09:43:50.984 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:43:51.108 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 123.9763ms
+2025-02-20 09:44:16.062 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Booking - null null
+2025-02-20 09:44:16.084 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.BookingController.GetAllBookings (GuestExperience)'
+2025-02-20 09:44:16.094 +01:00 [INF] Route matched with {action = "GetAllBookings", controller = "Booking"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Booking]] GetAllBookings() on controller GuestExperience.Controllers.BookingController (GuestExperience).
+2025-02-20 09:44:16.237 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."check_in", "b"."check_out", "b"."ReservationId", "b"."RoomId"
+FROM "booking" AS "b"
+2025-02-20 09:44:16.243 +01:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Booking, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 09:44:16.262 +01:00 [INF] Executed action GuestExperience.Controllers.BookingController.GetAllBookings (GuestExperience) in 165.3304ms
+2025-02-20 09:44:16.262 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.BookingController.GetAllBookings (GuestExperience)'
+2025-02-20 09:44:16.265 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Booking - 200 null application/json; charset=utf-8 202.6673ms
+2025-02-20 09:53:33.879 +01:00 [INF] Application is shutting down...
+2025-02-20 09:53:40.589 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-20 09:53:40.653 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-02-20 09:53:40.713 +01:00 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-02-20 08:53:40.6581174+00:00');
+SELECT changes();
+2025-02-20 09:53:40.754 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-02-20 09:53:40.759 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-02-20 09:53:40.760 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-02-20 09:53:40.766 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-02-20 09:53:40.776 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-02-20 09:53:40.781 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-02-20 09:53:40.846 +01:00 [INF] Now listening on: http://localhost:5235
+2025-02-20 09:53:40.847 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-20 09:53:40.847 +01:00 [INF] Hosting environment: Development
+2025-02-20 09:53:40.847 +01:00 [INF] Content root path: /home/knutekje/Documents/jules-GuestExperience/GuestExperience
+2025-02-20 09:53:44.507 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:53:44.577 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 70.3085ms
+2025-02-20 09:53:44.635 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:53:44.637 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 1.7215ms
+2025-02-20 09:53:44.836 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:53:44.846 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:53:44.847 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 10.8805ms
+2025-02-20 09:53:44.857 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:53:44.977 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 119.9652ms
+2025-02-20 09:53:54.294 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5235/Reservation - application/json 58
+2025-02-20 09:53:54.318 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:53:54.331 +01:00 [INF] Route matched with {action = "PostReservation", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GuestExperience.Models.Reservation]] PostReservation(GuestExperience.DTOs.ReservationDTO) on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 09:53:54.601 +01:00 [ERR] Failed executing DbCommand (32ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "reservation" ("GuestId")
+VALUES (@p0)
+RETURNING "Id";
+2025-02-20 09:53:54.616 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'GuestExperience.Data.GuestExperienceDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-02-20 09:53:54.623 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience) in 290.1073ms
+2025-02-20 09:53:54.624 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:53:54.625 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+[Exception in ControllerException..ctor]: Failed Error while creating reservation
+2025-02-20 09:53:54.629 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5235/Reservation - 500 null null 334.8999ms
+2025-02-20 09:54:10.199 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5235/Reservation - application/json 58
+2025-02-20 09:54:10.200 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:54:10.200 +01:00 [INF] Route matched with {action = "PostReservation", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GuestExperience.Models.Reservation]] PostReservation(GuestExperience.DTOs.ReservationDTO) on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 09:54:10.240 +01:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "reservation" ("Id", "GuestId")
+VALUES (@p0, @p1);
+2025-02-20 09:54:10.241 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'GuestExperience.Data.GuestExperienceDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-02-20 09:54:10.242 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience) in 42.2014ms
+2025-02-20 09:54:10.243 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:54:10.243 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+[Exception in ControllerException..ctor]: Failed Error while creating reservation
+2025-02-20 09:54:10.243 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5235/Reservation - 500 null null 44.3764ms
+2025-02-20 09:54:43.228 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 09:54:43.229 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 0.8267ms
+2025-02-20 09:54:43.269 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 09:54:43.269 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 0.833ms
+2025-02-20 09:54:43.442 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 09:54:43.442 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 09:54:43.442 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 0.8968ms
+2025-02-20 09:54:43.534 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 09:54:43.547 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.1758ms
+2025-02-20 09:54:50.116 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5235/Reservation - application/json 58
+2025-02-20 09:54:50.116 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:54:50.116 +01:00 [INF] Route matched with {action = "PostReservation", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GuestExperience.Models.Reservation]] PostReservation(GuestExperience.DTOs.ReservationDTO) on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 09:54:50.123 +01:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "reservation" ("GuestId")
+VALUES (@p0)
+RETURNING "Id";
+2025-02-20 09:54:50.124 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'GuestExperience.Data.GuestExperienceDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-02-20 09:54:50.127 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience) in 9.9023ms
+2025-02-20 09:54:50.127 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.PostReservation (GuestExperience)'
+2025-02-20 09:54:50.127 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+[Exception in ControllerException..ctor]: Failed Error while creating reservation
+2025-02-20 09:54:50.127 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5235/Reservation - 500 null null 11.4187ms
+2025-02-20 10:12:21.311 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Reservation - null null
+2025-02-20 10:12:21.311 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 10:12:21.316 +01:00 [INF] Route matched with {action = "GetReservations", controller = "Reservation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Reservation]]] GetReservations() on controller GuestExperience.Controllers.ReservationController (GuestExperience).
+2025-02-20 10:12:21.440 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."GuestId"
+FROM "reservation" AS "r"
+2025-02-20 10:12:21.450 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Reservation, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 10:12:21.463 +01:00 [INF] Executed action GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience) in 146.9407ms
+2025-02-20 10:12:21.463 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.ReservationController.GetReservations (GuestExperience)'
+2025-02-20 10:12:21.463 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Reservation - 200 null application/json; charset=utf-8 152.7645ms
+2025-02-20 10:12:26.557 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.html - null null
+2025-02-20 10:12:26.557 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.html - 200 null text/html;charset=utf-8 0.8798ms
+2025-02-20 10:12:26.666 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/index.js - null null
+2025-02-20 10:12:26.667 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/index.js - 200 null application/javascript;charset=utf-8 0.5248ms
+2025-02-20 10:12:26.911 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - null null
+2025-02-20 10:12:26.912 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-02-20 10:12:26.912 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/favicon-32x32.png - 499 628 image/png 1.1858ms
+2025-02-20 10:12:27.023 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - null null
+2025-02-20 10:12:27.033 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 9.9505ms
+2025-02-20 10:12:52.767 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5235/Guest - application/json 304
+2025-02-20 10:12:52.768 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.GuestController.CreateGuest (GuestExperience)'
+2025-02-20 10:12:52.772 +01:00 [INF] Route matched with {action = "CreateGuest", controller = "Guest"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateGuest(GuestExperience.Models.Guest) on controller GuestExperience.Controllers.GuestController (GuestExperience).
+2025-02-20 10:12:52.786 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-02-20 10:12:52.815 +01:00 [INF] Executed action GuestExperience.Controllers.GuestController.CreateGuest (GuestExperience) in 42.3613ms
+2025-02-20 10:12:52.815 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.GuestController.CreateGuest (GuestExperience)'
+2025-02-20 10:12:52.815 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5235/Guest - 400 null application/problem+json; charset=utf-8 48.4564ms
+2025-02-20 10:13:13.607 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5235/Room - application/json 120
+2025-02-20 10:13:13.608 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.CreateRoom (GuestExperience)'
+2025-02-20 10:13:13.612 +01:00 [INF] Route matched with {action = "CreateRoom", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoom(GuestExperience.DTOs.RoomDTO) on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 10:13:13.635 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+2025-02-20 10:13:13.690 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "room" ("capacity", "created_at", "extra_bed", "floor", "last_maintained", "price_id", "room_number", "room_type", "status", "updated_at")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-02-20 10:13:13.765 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'GuestExperience.DTOs.RoomDTO'.
+2025-02-20 10:13:13.787 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.CreateRoom (GuestExperience) in 175.1214ms
+2025-02-20 10:13:13.787 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.CreateRoom (GuestExperience)'
+2025-02-20 10:13:13.788 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5235/Room - 201 null application/json; charset=utf-8 180.3504ms
+2025-02-20 10:13:27.361 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5235/Room - null null
+2025-02-20 10:13:27.362 +01:00 [INF] Executing endpoint 'GuestExperience.Controllers.RoomController.GetRooms (GuestExperience)'
+2025-02-20 10:13:27.365 +01:00 [INF] Route matched with {action = "GetRooms", controller = "Room"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[GuestExperience.Models.Room]] GetRooms() on controller GuestExperience.Controllers.RoomController (GuestExperience).
+2025-02-20 10:13:27.368 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."capacity", "r"."created_at", "r"."extra_bed", "r"."floor", "r"."last_maintained", "r"."price_id", "r"."room_number", "r"."room_type", "r"."status", "r"."updated_at"
+FROM "room" AS "r"
+2025-02-20 10:13:27.369 +01:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GuestExperience.Models.Room, GuestExperience, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-20 10:13:27.373 +01:00 [INF] Executed action GuestExperience.Controllers.RoomController.GetRooms (GuestExperience) in 7.8963ms
+2025-02-20 10:13:27.373 +01:00 [INF] Executed endpoint 'GuestExperience.Controllers.RoomController.GetRooms (GuestExperience)'
+2025-02-20 10:13:27.374 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5235/Room - 200 null application/json; charset=utf-8 12.1935ms
+2025-02-20 10:29:12.679 +01:00 [INF] Application is shutting down...

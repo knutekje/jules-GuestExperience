@@ -8,13 +8,15 @@ namespace GuestExperience.MappingProfiles
     {
         public RoomMappingProfile()
         {
-            CreateMap<Room, RoomDTO>()
-                .ForMember(dest => dest.RoomType, opt => opt.MapFrom(src => src.RoomType.ToString()))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+            CreateMap<Room, RoomDTO>();
 
-            CreateMap<RoomDTO, Room>()
-                .ForMember(dest => dest.RoomType, opt => opt.MapFrom(src => src.RoomType.ToString()))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+
+
+            CreateMap<RoomDTO, Room>();
+
+
         }
+
+     
     }
 }

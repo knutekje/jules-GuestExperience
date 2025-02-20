@@ -1,4 +1,6 @@
 using System.Runtime.Serialization;
+using AutoMapper;
+using GuestExperience.DTOs;
 using GuestExperience.Exception;
 using GuestExperience.Models;
 using GuestExperience.Services;
@@ -11,9 +13,11 @@ namespace GuestExperience.Controllers;
 public class GuestController: ControllerBase
 {
     private readonly IGuestService _guestService;
+    private readonly IMapper _mapper;
 
-    public GuestController(IGuestService guestService)
+    public GuestController(IGuestService guestService, IMapper mapper)
     {
+        _mapper = mapper;
         _guestService = guestService;
     }
 
@@ -34,9 +38,10 @@ public class GuestController: ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateGuest([FromBody] Guest guest)
+    public async Task<IActionResult> CreateGuest([FromBody] GuestDTO guestDto)
     {
-        if(guest == null)
+        
+        if(guestDto == null)
         {
             return BadRequest("Room data is missing");
         }
@@ -48,13 +53,16 @@ public class GuestController: ControllerBase
 
         try
         {
+            var guest  = _mapper.Map<Guest>(guestDto);
             var addedGuest = await _guestService.CreateAsync(guest);
             if (addedGuest == null)
             {
                 return StatusCode(500, "Failed to add guest");
             }
+            var createdGuest = _mapper.Map<GuestDTO>(addedGuest);
 
-            return CreatedAtAction(nameof(GetGuestByIdAsync), new { id = addedGuest.Id }, addedGuest);
+            return Ok(createdGuest);
+
         }
         catch(System.Exception ex)
         {
@@ -121,7 +129,7 @@ public class GuestController: ControllerBase
         try
         {
             await _guestService.DeleteAsync(guestId);
-            return Ok();/**/
+            return Ok();
         }
         catch (System.Exception ex)
         {

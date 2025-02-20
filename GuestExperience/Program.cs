@@ -14,7 +14,6 @@ builder.Services.AddControllers();
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
-    //.WriteTo.Console()
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
@@ -35,14 +34,12 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 //Specific Service
 builder.Services.AddScoped<IRoomService, RoomService>();
-
-
-
+builder.Services.AddScoped<IGuestService, GuestService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IRoomService, RoomService>();
-//builder.Services.AddScoped<IGuestService, GuestService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
